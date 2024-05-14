@@ -122,3 +122,4 @@ rule Token = parse
   | '||'                  { Parser.LOGOR (getPos lexbuf) }
   | '&&'                  { Parser.LOGAND (getPos lexbuf) }
   | '~'                   { Parser.NUMNEGATION (getPos lexbuf) }
+     
