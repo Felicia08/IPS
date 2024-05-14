@@ -62,6 +62,8 @@ let keyword (s, pos) =
        | "char"         -> Parser.CHAR pos
        | "fun"          -> Parser.FUN pos
        | "fn"           -> Parser.FN pos
+       | "not"          -> Parser.LOGNEGATION pos
+
 
 (* specials: *)
        | "iota"         -> Parser.IOTA pos
@@ -115,3 +117,8 @@ rule Token = parse
   | ','                   { Parser.COMMA  (getPos lexbuf) }
   | eof                   { Parser.EOF    (getPos lexbuf) }
   | _                     { lexerError lexbuf "Illegal symbol in input" }
+  | '*'                   { Parser.TIMES (getPos lexbuf) }
+  | '/'                   { Parser.DIV (getPos lexbuf) }
+  | '||'                  { Parser.LOGOR (getPos lexbuf) }
+  | '&&'                  { Parser.LOGAND (getPos lexbuf) }
+  | '~'                   { Parser.NUMNEGATION (getPos lexbuf) }
