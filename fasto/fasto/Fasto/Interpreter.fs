@@ -144,17 +144,25 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
         e.g., `And (e1, e2, pos)` should not evaluate `e2` if `e1` already
               evaluates to false.
   *)
-  | Times(_, _, _) ->
+  | Times(e1, e2, pos) ->
         failwith "Unimplemented interpretation of multiplication"
-  | Divide(_, _, _) ->
-        failwith "Unimplemented interpretation of division"
-  | And (_, _, _) ->
+  | Divide(e1, e2, pos) ->
+      let r1 = evalExp(e1, vtab, ftab)
+      let r2 = evalExp(e2, vtab, ftab)
+      match (r1, r2) with
+            | (IntVal n1, IntVal n2) -> 
+                  if n2 = IntVal (0) then 
+                        reportWrongType "Division with zero not allowed"
+                  else
+                        IntVal (n1 / n2)
+            (*Magnler fejl håndtering .*)
+  | And (e1, e2, pos) ->
         failwith "Unimplemented interpretation of &&"
-  | Or (_, _, _) ->
+  | Or (e1, e2, pos) ->
         failwith "Unimplemented interpretation of ||"
-  | Not(_, _) ->
+  | Not(e, pos) ->
         failwith "Unimplemented interpretation of not"
-  | Negate(_, _) ->
+  | Negate(e, pos) ->
         failwith "Unimplemented interpretation of negate"
   | Equal(e1, e2, pos) ->
         let r1 = evalExp(e1, vtab, ftab)
