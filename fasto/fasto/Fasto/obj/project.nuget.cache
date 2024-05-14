@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "9MCD/KQnDz9SfG3gFpDn76o4our7V7/tpNW+Y+9E0oLTSNsGKoKBgBZu+AqrhH+awtFXQcP4LXQoFPVLoVfong==",
+  "success": true,
+  "projectFilePath": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/Fasto.fsproj",
+  "expectedPackageFiles": [
+    "/home/djafar1/.nuget/packages/fsharp.core/8.0.102/fsharp.core.8.0.102.nupkg.sha512",
+    "/home/djafar1/.nuget/packages/fslexyacc/11.2.0/fslexyacc.11.2.0.nupkg.sha512",
+    "/home/djafar1/.nuget/packages/fslexyacc.runtime/11.2.0/fslexyacc.runtime.11.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}
