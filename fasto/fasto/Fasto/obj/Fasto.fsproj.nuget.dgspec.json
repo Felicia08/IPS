@@ -1,26 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj": {}
+    "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/Fasto.fsproj": {}
   },
   "projects": {
-    "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj": {
+    "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/Fasto.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj",
+        "projectUniqueName": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/Fasto.fsproj",
         "projectName": "Fasto",
-        "projectPath": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj",
-        "packagesPath": "/home/felicia/.nuget/packages/",
-        "outputPath": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/obj/",
+        "projectPath": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/Fasto.fsproj",
+        "packagesPath": "/home/djafar1/.nuget/packages/",
+        "outputPath": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/felicia/.nuget/NuGet/NuGet.Config"
+          "/home/djafar1/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "/snap/dotnet-sdk/241/sdk/8.0.204/FSharp/library-packs": {},
+          "/usr/lib/dotnet/sdk/8.0.103/FSharp/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -28,11 +28,6 @@
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -42,7 +37,7 @@
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[8.0.200, )",
+              "version": "[8.0.102, )",
               "generatePathProperty": true
             },
             "FsLexYacc": {
@@ -67,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/241/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
