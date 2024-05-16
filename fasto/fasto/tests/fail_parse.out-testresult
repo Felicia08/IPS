@@ -1,0 +1,1 @@
+bin/../bin/fasto.sh: line 18: 142822 Aborted                 (core dumped) dotnet $FASTO "$@"

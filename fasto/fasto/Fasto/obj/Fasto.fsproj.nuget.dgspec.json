@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj": {}
+  },
+  "projects": {
+    "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj",
+        "projectName": "Fasto",
+        "projectPath": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj",
+        "packagesPath": "/home/felicia/.nuget/packages/",
+        "outputPath": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/felicia/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "/snap/dotnet-sdk/241/sdk/8.0.204/FSharp/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FSharp.Core": {
+              "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[8.0.200, )",
+              "generatePathProperty": true
+            },
+            "FsLexYacc": {
+              "target": "Package",
+              "version": "[11.2.0, )",
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/241/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

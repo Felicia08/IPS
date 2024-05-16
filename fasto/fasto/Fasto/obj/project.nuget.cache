@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "EeRqIvvIPbdDQOQwYq4FUyCgOkD1gQEAzlrNCJZiGVP5wRaRj8f/h6pQhEbaaCTnQNlmdWBFNnl6Bc0Xyu1nGQ==",
+  "success": true,
+  "projectFilePath": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj",
+  "expectedPackageFiles": [
+    "/home/felicia/.nuget/packages/fsharp.core/8.0.200/fsharp.core.8.0.200.nupkg.sha512",
+    "/home/felicia/.nuget/packages/fslexyacc/11.2.0/fslexyacc.11.2.0.nupkg.sha512",
+    "/home/felicia/.nuget/packages/fslexyacc.runtime/11.2.0/fslexyacc.runtime.11.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}
