@@ -274,7 +274,7 @@ and Token  lexbuf =
           )
   | 22 -> ( 
 # 120 "Lexer.fsl"
-                                          Parser.OR (getPos lexbuf) 
+                                           Parser.OR (getPos lexbuf) 
 # 278 "Lexer.fs"
           )
   | 23 -> ( 

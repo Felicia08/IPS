@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/Fasto.fsproj": {}
+    "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/Fasto/Fasto.fsproj": {}
   },
   "projects": {
-    "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/Fasto.fsproj": {
+    "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/Fasto/Fasto.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/Fasto.fsproj",
+        "projectUniqueName": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/Fasto/Fasto.fsproj",
         "projectName": "Fasto",
-        "projectPath": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/Fasto.fsproj",
+        "projectPath": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/Fasto/Fasto.fsproj",
         "packagesPath": "/home/djafar1/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/obj/",
+        "outputPath": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/Fasto/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/djafar1/.nuget/NuGet/NuGet.Config"

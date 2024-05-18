@@ -130,12 +130,12 @@ and checkExp  (ftab : FunTable)
         See `AbSyn.fs` for the expression constructors of `Times`, ...
     *)
     | Times (e1, e2, pos) ->
-        failwith "Unimplemented type check of &&"
-
+        let (e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
+        (Int, Times (e1_dec, e2_dec, pos))
 
     | Divide (e1, e2, pos) ->
-        failwith "Unimplemented type check of &&"
-
+        let (e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
+        (Int, Divide (e1_dec, e2_dec, pos))
 
     | And (e1, e2, pos) ->
         failwith "Unimplemented type check of &&"
