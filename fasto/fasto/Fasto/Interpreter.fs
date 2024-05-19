@@ -156,32 +156,42 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
       let r1 = evalExp(e1, vtab, ftab)
       let r2 = evalExp(e2, vtab, ftab)
       match (r1, r2) with
-            | (IntVal n1, IntVal n2) -> IntVal (n1 / n2)
+            | (IntVal n1, IntVal n2) -> 
+                  if n2 = 0 then
+                        reportWrongType "Division by zero not allowed" Int r2 (expPos e2)
+                  else 
+                        IntVal (n1 / n2)
             | (IntVal _, _) -> reportWrongType "right operand of /" Int r2 (expPos e2)
             | (_, _) -> reportWrongType "left operand of /" Int r1 (expPos e1)
   | And (e1, e2, pos) ->
       let r1 = evalExp(e1, vtab, ftab)
       let r2 = evalExp(e2, vtab, ftab)
       match (r1, r2) with
-          | (BoolVal b1, BoolVal b2) -> BoolVal (b1 && b2)
+          | (BoolVal false, _) -> BoolVal false
+          | (BoolVal true, BoolVal true) -> BoolVal true
+          | (BoolVal true, BoolVal false) -> BoolVal false
           | (BoolVal _, _) -> reportWrongType "right operand of &&" Int r2 (expPos e2)
           | (_, _) -> reportWrongType "left operand of &&" (valueType r1) r2 pos
   | Or (e1, e2, pos) ->
       let r1 = evalExp(e1, vtab, ftab)
       let r2 = evalExp(e2, vtab, ftab)
       match (r1, r2) with
-          | (BoolVal b1, BoolVal b2) -> BoolVal (b1 || b2)
+          | (BoolVal true, _) -> BoolVal true
+          | (BoolVal false, BoolVal true) -> BoolVal true
+          | (BoolVal false, BoolVal false) -> BoolVal false
           | (BoolVal _, _) -> reportWrongType "right operand of &&" Int r2 (expPos e2)
           | (_, _) -> reportWrongType "left operand of &&" (valueType r1) r2 pos
   | Not(e, pos) ->
       let r1 = evalExp(e, vtab, ftab)
       match r1 with
+          | IntVal n1 -> IntVal(n1 * (0-1))
           | BoolVal false -> BoolVal true
           |_ -> BoolVal false
           
   | Negate(e, pos) ->
       let r1 = evalExp(e, vtab, ftab)
       match r1 with
+          | IntVal n1 -> IntVal(n1 * (0-1))
           | BoolVal false -> BoolVal true
           |_ -> BoolVal false
   
