@@ -138,10 +138,20 @@ and checkExp  (ftab : FunTable)
         (Int, Divide (e1_dec, e2_dec, pos))
 
     | And (e1, e2, pos) ->
-        failwith "Unimplemented type check of &&"
+        let  (t1, e1') = checkExp ftab vtab e1
+        let  (t2, e2') = checkExp ftab vtab e2
+        match (t1 = t2, t1) with
+          | (false, _) -> reportTypesDifferent "arguments of && " t1 t2 pos
+          | (true, Array _) -> reportTypeWrongKind "arguments of && " "base" t1 pos
+          | _ -> (Bool, And (e1', e2', pos))
 
     | Or (e1, e2, pos) ->
-        failwith "Unimplemented type check of ||"
+        let  (t1, e1') = checkExp ftab vtab e1
+        let  (t2, e2') = checkExp ftab vtab e2
+        match (t1 = t2, t1) with
+          | (false, _) -> reportTypesDifferent "arguments of || " t1 t2 pos
+          | (true, Array _) -> reportTypeWrongKind "arguments of || " "base" t1 pos
+          | _ -> (Bool, Or (e1', e2', pos))
 
     | Not (e, pos) ->
         failwith "Unimplemented type check of not"
