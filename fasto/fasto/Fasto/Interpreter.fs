@@ -181,7 +181,7 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
           | (BoolVal false, BoolVal false) -> BoolVal false
           | (BoolVal _, _) -> reportWrongType "right operand of &&" Int r2 (expPos e2)
           | (_, _) -> reportWrongType "left operand of &&" (valueType r1) r2 pos
- | Not(e, pos) ->
+  | Not(e, pos) ->
       let r1 = evalExp(e, vtab, ftab)
       match r1 with
           | BoolVal b -> BoolVal (not b)
