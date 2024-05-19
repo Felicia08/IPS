@@ -1,0 +1,6 @@
+fun int negater(int n) =
+  ~n
+
+fun int main() =
+  let n = read(int) in
+  write(negater(n))

@@ -254,10 +254,16 @@ let rec compileExp  (e      : TypedExp)
       code1 @ code2 @ [DIV (place,t1,t2)]
 
   | Not (e, pos) ->
-      failwith "Unimplemented code generation of not" 
+      let t1 = newReg "Not"
+      let code1 = compileExp e vtable t1
+      code1 @ [ XORI (place, t1, 1)]
 
   | Negate (e, pos) ->
-      failwith "Unimplemented code generation of negate"
+      let t1 = newReg "R_Neg"
+      let t2 = newReg "L_Neg"
+      let code1 = compileExp e vtable t1
+      let code2 = [ LI (t2, -1) ]
+      code1 @ code2 @ [ MUL (place, t1, t2)]
 
   | Let (dec, e1, pos) ->
       let (code1, vtable1) = compileDec dec vtable
