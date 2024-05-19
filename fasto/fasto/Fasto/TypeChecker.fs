@@ -154,11 +154,16 @@ and checkExp  (ftab : FunTable)
           | _ -> (Bool, Or (e1', e2', pos))
 
     | Not (e, pos) ->
-        failwith "Unimplemented type check of not"
+        let  (t, e') = checkExp ftab vtab e
+        match t with
+          | Bool -> (Bool, Not (e', pos))
+          | _ -> reportTypeWrongKind "arguments of Not " "Bool" t pos
 
     | Negate (e, pos) ->
-        failwith "Unimplemented type check of negate"
-
+        let  (t, e') = checkExp ftab vtab e
+        match t with
+          | Int -> (Int, Not (e', pos))
+          | _ -> reportTypeWrongKind "arguments of ~ " "Int" t pos
     (* The types for e1, e2 must be the same. The result is always a Bool. *)
     | Equal (e1, e2, pos) ->
         let  (t1, e1') = checkExp ftab vtab e1
