@@ -239,14 +239,14 @@ let rec compileExp  (e      : TypedExp)
      version, but remember to come back and clean it up later.
      `Not` and `Negate` are simpler; you can use `XORI` for `Not`
   *)
-  | Times (_, _, _) ->
+  | Times (e1, e2, pos) ->
       let t1 = newReg "times_L"
       let t2 = newReg "times_R"
       let code1 = compileExp e1 vtable t1
       let code2 = compileExp e2 vtable t2
       code1 @ code2 @ [MUL (place,t1,t2)]
 
-  | Divide (_, _, _) ->
+  | Divide (e1, e2, pos) ->
       let t1 = newReg "div_L"
       let t2 = newReg "div_R"
       let code1 = compileExp e1 vtable t1
