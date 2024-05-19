@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "FSharp.Core/8.0.102": {
+      "FSharp.Core/8.0.300": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -85,14 +85,15 @@
     }
   },
   "libraries": {
-    "FSharp.Core/8.0.102": {
-      "sha512": "7rhzK+X2FcJA9ljnvUKvKj2ChI2egPXAxl2iyw4IO1gAud8zmAhmrsjNU9ECha0/lkq5+BJij6+5uuQosdypbg==",
+    "FSharp.Core/8.0.300": {
+      "sha512": "Jv44fV7TNglyMku89lQcA4Q6mFKLyHb2bs1Yb72nvSVc+cHplEnoZ4XQUaaTLJGUTx/iMqcrkYGtaLzkkIhpaA==",
       "type": "package",
-      "path": "fsharp.core/8.0.102",
+      "path": "fsharp.core/8.0.300",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "Icon.png",
-        "fsharp.core.8.0.102.nupkg.sha512",
+        "fsharp.core.8.0.300.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/netstandard2.0/FSharp.Core.dll",
         "lib/netstandard2.0/FSharp.Core.xml",
@@ -227,30 +228,30 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "FSharp.Core >= 8.0.102",
+      "FSharp.Core >= 8.0.300",
       "FsLexYacc >= 11.2.0"
     ]
   },
   "packageFolders": {
-    "/home/djafar1/.nuget/packages/": {}
+    "/home/felicia/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/Fasto/Fasto.fsproj",
+      "projectUniqueName": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj",
       "projectName": "Fasto",
-      "projectPath": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/Fasto/Fasto.fsproj",
-      "packagesPath": "/home/djafar1/.nuget/packages/",
-      "outputPath": "/mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/Fasto/obj/",
+      "projectPath": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/Fasto.fsproj",
+      "packagesPath": "/home/felicia/.nuget/packages/",
+      "outputPath": "/home/felicia/Documents/IPS/Projekt/IPS/fasto/fasto/Fasto/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/djafar1/.nuget/NuGet/NuGet.Config"
+        "/home/felicia/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "/usr/lib/dotnet/sdk/8.0.103/FSharp/library-packs": {},
+        "/snap/dotnet-sdk/245/sdk/8.0.300/FSharp/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -258,6 +259,11 @@
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -267,7 +273,7 @@
           "FSharp.Core": {
             "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
             "target": "Package",
-            "version": "[8.0.102, )",
+            "version": "[8.0.300, )",
             "generatePathProperty": true
           },
           "FsLexYacc": {
@@ -292,7 +298,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/245/sdk/8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
