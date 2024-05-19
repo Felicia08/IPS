@@ -184,12 +184,14 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
   | Not(e, pos) ->
       let r1 = evalExp(e, vtab, ftab)
       match r1 with
+          | IntVal n1 -> IntVal(n1 * (0-1))
           | BoolVal false -> BoolVal true
           |_ -> BoolVal false
           
   | Negate(e, pos) ->
       let r1 = evalExp(e, vtab, ftab)
       match r1 with
+          | IntVal n1 -> IntVal(n1 * (0-1))
           | BoolVal false -> BoolVal true
           |_ -> BoolVal false
   
