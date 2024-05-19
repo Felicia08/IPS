@@ -149,18 +149,16 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
         let r2   = evalExp(e2, vtab, ftab)
         match (r1, r2) with
           | (IntVal n1, IntVal n2) -> IntVal (n1*n2)
-            (*Magnler fejl håndtering .*)
+          | (IntVal _, _) -> reportWrongType "right operand of *" Int r2 (expPos e2)
+          | (_, _) -> reportWrongType "left operand of *" Int r1 (expPos e1)
 
   | Divide(e1, e2, pos) ->
       let r1 = evalExp(e1, vtab, ftab)
       let r2 = evalExp(e2, vtab, ftab)
       match (r1, r2) with
-            | (IntVal n1, IntVal n2) -> 
-                  (*if (IntVal n2) == IntVal (0) then 
-                        reportWrongType "Division with zero not allowed"
-                  else*)
-                  IntVal (n1 / n2)
-            (*Magnler fejl håndtering .*)
+            | (IntVal n1, IntVal n2) -> IntVal (n1 / n2)
+            | (IntVal _, _) -> reportWrongType "right operand of /" Int r2 (expPos e2)
+            | (_, _) -> reportWrongType "left operand of /" Int r1 (expPos e1)
   | And (e1, e2, pos) ->
         failwith "Unimplemented interpretation of &&"
   | Or (e1, e2, pos) ->
