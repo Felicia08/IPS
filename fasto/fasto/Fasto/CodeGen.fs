@@ -253,10 +253,10 @@ let rec compileExp  (e      : TypedExp)
       let code2 = compileExp e2 vtable t2
       code1 @ code2 @ [DIV (place,t1,t2)]
 
-  | Not (_, _) ->
-      failwith "Unimplemented code generation of not"
+  | Not (e, pos) ->
+      failwith "Unimplemented code generation of not" 
 
-  | Negate (_, _) ->
+  | Negate (e, pos) ->
       failwith "Unimplemented code generation of negate"
 
   | Let (dec, e1, pos) ->
