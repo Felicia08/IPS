@@ -41,7 +41,7 @@ let parse_error_rich =
 %token <char * Position> CHARLIT
 %token <string * Position> ID STRINGLIT
 //keywords
-%token <Position> BOOL CHAR ELSE FN FUN IF IN INT LET THEN TRUE
+%token <Position> BOOL CHAR ELSE FN FUN IF IN INT LET THEN
 //specials
 %token <Position> IOTA LENGTH MAP READ REDUCE WRITE
 //symbols
@@ -68,7 +68,7 @@ let parse_error_rich =
 %%
 
 Prog :    FunDecs EOF   { $1 }
-;
+;                                         
 
 FunDecs : FUN Fun FunDecs { $2 :: $3 }
         | FUN Fun         { $2 :: [] }

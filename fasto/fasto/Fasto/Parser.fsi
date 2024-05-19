@@ -12,6 +12,8 @@ type token =
   | RPAR of (Position)
   | LBRACKET of (Position)
   | RBRACKET of (Position)
+  | TRUE of (Position)
+  | FALSE of (Position)
   | TIMES of (Position)
   | DIVIDE of (Position)
   | NEGATE of (Position)
@@ -38,7 +40,6 @@ type token =
   | INT of (Position)
   | LET of (Position)
   | THEN of (Position)
-  | TRUE of (Position)
   | ID of (string * Position)
   | STRINGLIT of (string * Position)
   | CHARLIT of (char * Position)
@@ -55,6 +56,8 @@ type tokenId =
     | TOKEN_RPAR
     | TOKEN_LBRACKET
     | TOKEN_RBRACKET
+    | TOKEN_TRUE
+    | TOKEN_FALSE
     | TOKEN_TIMES
     | TOKEN_DIVIDE
     | TOKEN_NEGATE
@@ -81,7 +84,6 @@ type tokenId =
     | TOKEN_INT
     | TOKEN_LET
     | TOKEN_THEN
-    | TOKEN_TRUE
     | TOKEN_ID
     | TOKEN_STRINGLIT
     | TOKEN_CHARLIT
