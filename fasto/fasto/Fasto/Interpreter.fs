@@ -190,8 +190,8 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
   | Negate(e, pos) ->
       let r1 = evalExp(e, vtab, ftab)
       match r1 with
-          | BoolVal false -> BoolVal true
-          |_ -> BoolVal false
+          | IntVal 1 -> IntVal 0
+          |_ -> IntVal 1
   
   | Equal(e1, e2, pos) ->
         let r1 = evalExp(e1, vtab, ftab)
