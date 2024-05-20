@@ -120,63 +120,66 @@ l.false_34_:
 # was:	li	_Not_42_, 2
 	xori	x11, x11, 1
 # was:	xori	_div_R_40_, _Not_42_, 1
-	div	x12, x10, x11
+	div	x10, x10, x11
 # was:	div	_eq_L_37_, _div_L_39_, _div_R_40_
 	li	x11, 1
-# was:	li	_eq_R_38_, 1
-	li	x10, 0
+# was:	li	_Not_43_, 1
+	xori	x12, x11, 1
+# was:	xori	_eq_R_38_, _Not_43_, 1
+	li	x11, 0
 # was:	li	_arg_36_, 0
-	bne	x12, x11, l.false_43_
-# was:	bne	_eq_L_37_, _eq_R_38_, l.false_43_
-	li	x10, 1
+	bne	x10, x12, l.false_44_
+# was:	bne	_eq_L_37_, _eq_R_38_, l.false_44_
+	li	x11, 1
 # was:	li	_arg_36_, 1
-l.false_43_:
-# 	mv	x10,_arg_36_
+l.false_44_:
+	mv	x10, x11
+# was:	mv	x10, _arg_36_
 	jal	f.write_nl
 # was:	jal	f.write_nl, x10
 # 	mv	_let_x3_35_,x10
-# 	mv	_cond_L_49_,_let_x0_10_
-	beq	x18, x0, l.false_52_
-# was:	beq	_cond_L_49_, x0, l.false_52_
-# 	mv	_Not_51_,_let_x1_17_
+# 	mv	_cond_L_50_,_let_x0_10_
+	beq	x18, x0, l.false_53_
+# was:	beq	_cond_L_50_, x0, l.false_53_
+# 	mv	_Not_52_,_let_x1_17_
 	xori	x11, x19, 1
-# was:	xori	_cond_R_50_, _Not_51_, 1
-	beq	x11, x0, l.false_52_
-# was:	beq	_cond_R_50_, x0, l.false_52_
+# was:	xori	_cond_R_51_, _Not_52_, 1
+	beq	x11, x0, l.false_53_
+# was:	beq	_cond_R_51_, x0, l.false_53_
 	li	x11, 1
-# was:	li	_cond_L_47_, 1
-	j	l.end_53_
-l.false_52_:
+# was:	li	_cond_L_48_, 1
+	j	l.end_54_
+l.false_53_:
 	li	x11, 0
-# was:	li	_cond_L_47_, 0
-l.end_53_:
-	beq	x11, x0, l.false_55_
-# was:	beq	_cond_L_47_, x0, l.false_55_
-# 	mv	_Not_54_,_let_x2_26_
+# was:	li	_cond_L_48_, 0
+l.end_54_:
+	beq	x11, x0, l.false_56_
+# was:	beq	_cond_L_48_, x0, l.false_56_
+# 	mv	_Not_55_,_let_x2_26_
 	xori	x11, x20, 1
-# was:	xori	_cond_R_48_, _Not_54_, 1
-	beq	x11, x0, l.false_55_
-# was:	beq	_cond_R_48_, x0, l.false_55_
+# was:	xori	_cond_R_49_, _Not_55_, 1
+	beq	x11, x0, l.false_56_
+# was:	beq	_cond_R_49_, x0, l.false_56_
 	li	x11, 1
-# was:	li	_cond_L_45_, 1
-	j	l.end_56_
-l.false_55_:
+# was:	li	_cond_L_46_, 1
+	j	l.end_57_
+l.false_56_:
 	li	x11, 0
-# was:	li	_cond_L_45_, 0
-l.end_56_:
-	beq	x11, x0, l.false_57_
-# was:	beq	_cond_L_45_, x0, l.false_57_
-# 	mv	_cond_R_46_,_let_x3_35_
-	beq	x10, x0, l.false_57_
-# was:	beq	_cond_R_46_, x0, l.false_57_
+# was:	li	_cond_L_46_, 0
+l.end_57_:
+	beq	x11, x0, l.false_58_
+# was:	beq	_cond_L_46_, x0, l.false_58_
+# 	mv	_cond_R_47_,_let_x3_35_
+	beq	x10, x0, l.false_58_
+# was:	beq	_cond_R_47_, x0, l.false_58_
 	li	x10, 1
-# was:	li	_arg_44_, 1
-	j	l.end_58_
-l.false_57_:
+# was:	li	_arg_45_, 1
+	j	l.end_59_
+l.false_58_:
 	li	x10, 0
-# was:	li	_arg_44_, 0
-l.end_58_:
-# 	mv	x10,_arg_44_
+# was:	li	_arg_45_, 0
+l.end_59_:
+# 	mv	x10,_arg_45_
 	jal	f.write_nl
 # was:	jal	f.write_nl, x10
 # 	mv	_mainres_9_,x10
