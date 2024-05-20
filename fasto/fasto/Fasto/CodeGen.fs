@@ -357,7 +357,6 @@ let rec compileExp  (e      : TypedExp)
         the code of `e2` must not be executed. Similarly for `And` (&&).
   *)
   | And (e1, e2, pos) ->
-      failwith "Unimplemented code generation of ||"
       let t1 = newReg "cond_L"
       let t2 = newReg "cond_R"
       let code1 = compileExp e1 vtable t1
