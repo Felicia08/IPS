@@ -162,7 +162,7 @@ and checkExp  (ftab : FunTable)
     | Negate (e, pos) ->
         let  (t, e') = checkExp ftab vtab e
         match t with
-          | Int -> (Int, Not (e', pos))
+          | Int -> (Int, Negate (e', pos))
           | _ -> reportTypeWrongKind "arguments of ~ " "Int" t pos
     (* The types for e1, e2 must be the same. The result is always a Bool. *)
     | Equal (e1, e2, pos) ->
