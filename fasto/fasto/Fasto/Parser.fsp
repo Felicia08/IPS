@@ -60,6 +60,7 @@ let parse_error_rich =
 %left TIMES DIVIDE
 %left NEGATE
 
+
 %start Prog
 %type <AbSyn.UntypedProg> Prog
 %type <AbSyn.UntypedFunDec list> FunDecs
