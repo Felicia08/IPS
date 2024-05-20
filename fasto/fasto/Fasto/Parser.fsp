@@ -52,6 +52,8 @@ let parse_error_rich =
 %token <Position> LCURLY RCURLY EOF
 
 %nonassoc ELSE IN
+%left OR
+%left AND
 %left DEQ LTH
 %left PLUS MINUS
 %left DIVIDE TIMES

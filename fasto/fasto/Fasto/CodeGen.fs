@@ -361,7 +361,6 @@ let rec compileExp  (e      : TypedExp)
       let t2 = newReg "cond_R"
       let code1 = compileExp e1 vtable t1
       let code2 = compileExp e2 vtable t2 
-      let labeltrue = newLab "true"
       let labelfalse = newLab "false"
       let labelend = newLab "end"
       code1 @ [BEQ (t1, Rzero, labelfalse)] @ code2 @ 
