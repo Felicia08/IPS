@@ -169,8 +169,10 @@ let rec compileExp  (e      : TypedExp)
       [ LI (place, n) ] (* assembler will generate appropriate
                            instruction sequence for any value n *)
   | Constant (BoolVal p, _) ->
-      (* TODO project task 1: represent `true`/`false` values as `1`/`0` *)
-      failwith "Unimplemented code generation for boolean constants"
+      match p with
+          | true -> [ LI(place,1) ]
+          | false -> [ LI(place,0) ]
+          
   | Constant (CharVal c, pos) ->
       [ LI (place, int c) ]
 
@@ -354,8 +356,45 @@ let rec compileExp  (e      : TypedExp)
         in `e1 || e2` if the execution of `e1` will evaluate to `true` then
         the code of `e2` must not be executed. Similarly for `And` (&&).
   *)
-  | And (_, _, _) ->
-      failwith "Unimplemented code generation of &&"
+  | And (e1, e2, pos) ->
+      // let t1 = newReg "times_L"
+      // let t2 = newReg "times_R"
+      // let code1 = compileExp e1 vtable t1
+      // let code2 = compileExp e2 vtable t2
+
+      // let first_false = newLab "first_false"
+      // let elseLabel = newLab "else"
+      // let endLabel = newLab "endif"
+      // let code1 = [t1 = true] thenLabel elseLabel
+      // let code2 = compileExp e1 vtable t1
+      // let code3 = compileExp e2 vtable t2
+
+
+      // code1 @ [LABEL thenLabel] @ code2  @
+      //   [ J endLabel; LABEL elseLabel ] @
+      //   code3 @ [LABEL endLabel]
+
+
+(* Check that array size N >= 0:
+         if N >= 0 then jumpto safe_lab
+         jumpto "_IllegalArrSizeError_"
+         safe_lab: ...
+      *)
+      
+      // let safe_lab = newLab "safe"
+      // let checksize = [ BGE (size_reg, Rzero, first_false)
+      //                 ; LI (Ra0, line)
+      //                 ; LA (Ra1, "m.BadSize")
+      //                 ; J "p.RuntimeError"
+      //                 ; LABEL (first_false)
+      //                 ]
+
+      // let addr_reg = newReg "addr"
+      // let i_reg = newReg "i"
+      // let init_regs = [ ADDI (addr_reg, place, 4)
+      //                 ; MV (i_reg, Rzero) ]
+      failwith "Unimplemented code generation of ||"
+
 
   | Or (_, _, _) ->
       failwith "Unimplemented code generation of ||"
