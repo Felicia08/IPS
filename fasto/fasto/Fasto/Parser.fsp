@@ -54,11 +54,12 @@ let parse_error_rich =
 %nonassoc ELSE IN
 %left OR
 %left AND
+%left NOT
 %left DEQ LTH
 %left PLUS MINUS
-%left DIVIDE TIMES
-%left NEGATE NOT
-%left AND OR
+%left TIMES DIVIDE
+%left NEGATE
+
 
 %start Prog
 %type <AbSyn.UntypedProg> Prog
@@ -103,6 +104,12 @@ Params : Type ID COMMA Params
 
 Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
     | CHARLIT        { Constant (CharVal (fst $1), snd $1) }
+
+// Task A 
+    | TRUE           { Constant (BoolVal true, $1) }  
+    | FALSE          { Constant (BoolVal false, $1) }
+////////
+
     | ID             { Var $1 }
     | STRINGLIT      { StringLit $1 }
     | LCURLY Exps RCURLY
@@ -119,7 +126,7 @@ Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
     | NOT Exp { Not($2, $1) }
     | Exp AND Exp { And($1, $3, $2) }
     | Exp OR Exp { Or($1, $3, $2) }
-//
+////////
 
     | IF Exp THEN Exp ELSE Exp
                      { If ($2, $4, $6, $1) }
