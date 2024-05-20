@@ -168,7 +168,7 @@ let rec compileExp  (e      : TypedExp)
   | Constant (IntVal n, pos) ->
       [ LI (place, n) ] (* assembler will generate appropriate
                            instruction sequence for any value n *)
-  | Constant (BoolVal p, _) ->
+  | Constant (BoolVal p, pos) ->
       match p with
           | true -> [ LI(place,1) ]
           | false -> [ LI(place,0) ]
@@ -357,47 +357,29 @@ let rec compileExp  (e      : TypedExp)
         the code of `e2` must not be executed. Similarly for `And` (&&).
   *)
   | And (e1, e2, pos) ->
-      // let t1 = newReg "times_L"
-      // let t2 = newReg "times_R"
-      // let code1 = compileExp e1 vtable t1
-      // let code2 = compileExp e2 vtable t2
-
-      // let first_false = newLab "first_false"
-      // let elseLabel = newLab "else"
-      // let endLabel = newLab "endif"
-      // let code1 = [t1 = true] thenLabel elseLabel
-      // let code2 = compileExp e1 vtable t1
-      // let code3 = compileExp e2 vtable t2
-
-
-      // code1 @ [LABEL thenLabel] @ code2  @
-      //   [ J endLabel; LABEL elseLabel ] @
-      //   code3 @ [LABEL endLabel]
-
-
-(* Check that array size N >= 0:
-         if N >= 0 then jumpto safe_lab
-         jumpto "_IllegalArrSizeError_"
-         safe_lab: ...
-      *)
+      failwith "Unimplemented code generation of ||"
+      let t1 = newReg "cond_L"
+      let t2 = newReg "cond_R"
+      let code1 = compileExp e1 vtable t1
+      let code2 = compileExp e2 vtable t2 
+      let labeltrue = newLab "true"
+      let labelfalse = newLab "false"
+      let labelend = newLab "end"
+      code1 @ [BEQ (t1, Rzero, labelfalse)] @ code2 @ 
+      [BEQ (t2, Rzero, labelfalse)] @ [ LI (place, 1)] @ [J labelend] @ 
+      [LABEL labelfalse] @ [ LI (place, 0)] @ [LABEL labelend]
       
-      // let safe_lab = newLab "safe"
-      // let checksize = [ BGE (size_reg, Rzero, first_false)
-      //                 ; LI (Ra0, line)
-      //                 ; LA (Ra1, "m.BadSize")
-      //                 ; J "p.RuntimeError"
-      //                 ; LABEL (first_false)
-      //                 ]
-
-      // let addr_reg = newReg "addr"
-      // let i_reg = newReg "i"
-      // let init_regs = [ ADDI (addr_reg, place, 4)
-      //                 ; MV (i_reg, Rzero) ]
-      failwith "Unimplemented code generation of ||"
-
-
-  | Or (_, _, _) ->
-      failwith "Unimplemented code generation of ||"
+  | Or (e1, e2, pos) ->
+      let t1 = newReg "cond_L"
+      let t2 = newReg "cond_R"
+      let code1 = compileExp e1 vtable t1
+      let code2 = compileExp e2 vtable t2 
+      let labeltrue = newLab "true"
+      let labelend = newLab "end"
+      code1 @ [BNE (t1, Rzero, labeltrue)] @ code2 @ 
+      [BNE (t2, Rzero, labeltrue)] @ 
+      [ LI (place, 0)] @ [J labelend] @ 
+      [LABEL labeltrue] @ [ LI (place, 1)] @ [LABEL labelend]
 
   (* Indexing:
      1. generate code to compute the index
