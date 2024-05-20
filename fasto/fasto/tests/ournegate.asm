@@ -8,9 +8,11 @@ f.negater:
 	sw	x1, -4(x2)
 	addi	x2, x2, -4
 # 	mv	_param_n_1_,x10
-# 	mv	_Not_3_,_param_n_1_
-	xori	x10, x10, 1
-# was:	xori	_negaterres_2_, _Not_3_, 1
+# 	mv	_R_Neg_3_,_param_n_1_
+	li	x11, -1
+# was:	li	_L_Neg_4_, -1
+	mul	x10, x10, x11
+# was:	mul	_negaterres_2_, _R_Neg_3_, _L_Neg_4_
 # 	mv	x10,_negaterres_2_
 	addi	x2, x2, 4
 	lw	x1, -4(x2)
@@ -22,20 +24,20 @@ f.main:
 	addi	x2, x2, -8
 	jal	p.getint
 # was:	jal	p.getint, 
-# 	mv	_let_n_5_,x10
-# 	mv	_arg_7_,_let_n_5_
-# 	mv	x10,_arg_7_
+# 	mv	_let_n_6_,x10
+# 	mv	_arg_8_,_let_n_6_
+# 	mv	x10,_arg_8_
 	jal	f.negater
 # was:	jal	f.negater, x10
-# 	mv	_tmp_6_,x10
+# 	mv	_tmp_7_,x10
 	mv	x18, x10
-# was:	mv	_mainres_4_, _tmp_6_
+# was:	mv	_mainres_5_, _tmp_7_
 	mv	x10, x18
-# was:	mv	x10, _mainres_4_
+# was:	mv	x10, _mainres_5_
 	jal	p.putint
 # was:	jal	p.putint, x10
 	mv	x10, x18
-# was:	mv	x10, _mainres_4_
+# was:	mv	x10, _mainres_5_
 	addi	x2, x2, 8
 	lw	x18, -8(x2)
 	lw	x1, -4(x2)
