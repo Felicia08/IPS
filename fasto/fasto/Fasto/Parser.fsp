@@ -43,7 +43,7 @@ let parse_error_rich =
 //keywords
 %token <Position> BOOL CHAR ELSE FN FUN IF IN INT LET THEN
 //specials
-%token <Position> IOTA LENGTH MAP READ REDUCE WRITE
+%token <Position> IOTA LENGTH MAP READ REDUCE WRITE REPLICATE FILTER SCAN
 //symbols
 %token <Position> MINUS PLUS DEQ LTH
 %token <Position> TIMES DIVIDE NEGATE NOT AND OR
@@ -149,6 +149,11 @@ Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
     // Task 1B
     | LET Decs IN Exp 
                      { List.foldBack (fun declaration acc -> Let (declaration, acc, $1)) $2 $4 }
+    //
+
+    // Task 2
+    | REPLICATE LPAR Exp COMMA Exp RPAR
+                     { Replicate ($3, $5, (), $1) }
     //
 
     | ID LBRACKET Exp RBRACKET
