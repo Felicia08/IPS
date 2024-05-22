@@ -602,9 +602,43 @@ let rec compileExp  (e      : TypedExp)
         the current location of the result iterator at every iteration of
         the loop.
   *)
-  | Scan (_, _, _, _, _) ->
-      failwith "Unimplemented code generation of scan"
+  | Scan (binop, acc_exp, arr_exp, tp, pos) ->
+      let arr_reg  = newReg "arr_reg"   (* address of input array *)
+      let size_reg = newReg "size"  (* size of input array *)
+      let i_reg    = newReg "ind_var"   (* loop counter *)
+      let tmp_reg  = newReg "tmp"   (* several purposes *)
+      let loop_beg = newLab "loop_beg"
+      let loop_end = newLab "loop_end"
 
+      let arr_code = compileExp arr_exp vtable place
+      let header1 = [ LW(size_reg, place, 0) ]
+
+      (* Compile initial value into place (will be updated below) *)
+      let acc_code = compileExp acc_exp vtable place
+
+      (* Set arr_reg to address of first element instead. *)
+      (* Set i_reg to 0. While i < size_reg, loop. *)
+      let loop_code =
+              [ ADDI (arr_reg, arr_reg, 4)
+              ; MV (i_reg, Rzero)
+              ; LABEL (loop_beg)
+              ; BGE (i_reg, size_reg, loop_end)
+              ]
+      (* Load arr[i] into tmp_reg *)
+      let elem_size = getElemSize tp
+      let load_code =
+        [ Load elem_size (tmp_reg, place, 0)
+        ; ADDI (arr_reg, arr_reg, elemSizeToInt elem_size)
+        ]
+      (* place := binop(place, tmp_reg) *)
+      let apply_code =
+            applyFunArg(binop, [place; tmp_reg], vtable, place, pos)
+
+      arr_code @ header1 @ acc_code @ loop_code @ load_code @ apply_code @
+         [ ADDI(i_reg, i_reg, 1)
+         ; J loop_beg
+         ; LABEL loop_end
+         ] @ dynalloc (size_reg, place, ret_type)
 and applyFunArg ( ff     : TypedFunArg
                 , args   : reg list
                 , vtable : VarTable
