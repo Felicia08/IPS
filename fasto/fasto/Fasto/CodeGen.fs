@@ -364,8 +364,9 @@ let rec compileExp  (e      : TypedExp)
       let labelfalse = newLab "false"
       let labelend = newLab "end"
       code1 @ [BEQ (t1, Rzero, labelfalse)] @ code2 @ 
-      [BEQ (t2, Rzero, labelfalse); LI (place, 1); J labelend] @ 
-      [LABEL labelfalse; LI (place, 0); LABEL labelend]
+      [BEQ (t2, Rzero, labelfalse); LI (place, 1); 
+      J labelend; LABEL labelfalse; 
+      LI (place, 0); LABEL labelend]
       
   | Or (e1, e2, pos) ->
       let t1 = newReg "cond_L"
@@ -375,8 +376,9 @@ let rec compileExp  (e      : TypedExp)
       let labeltrue = newLab "true"
       let labelend = newLab "end"
       code1 @ [BNE (t1, Rzero, labeltrue)] @ code2 @ 
-      [BNE (t2, Rzero, labeltrue); LI (place, 0); J labelend] @ 
-      [LABEL labeltrue; LI (place, 1); LABEL labelend]
+      [BNE (t2, Rzero, labeltrue); LI (place, 0); 
+      J labelend; LABEL labeltrue; 
+      LI (place, 1); LABEL labelend]
 
   (* Indexing:
      1. generate code to compute the index

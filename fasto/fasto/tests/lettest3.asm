@@ -3,41 +3,35 @@
 	jal	f.main
 	jal	p.stop
 # User functions
-# Function negater
-f.negater:
-	sw	x1, -4(x2)
-	addi	x2, x2, -4
-# 	mv	_param_n_1_,x10
-# 	mv	_R_Neg_3_,_param_n_1_
-	li	x11, -1
-# was:	li	_L_Neg_4_, -1
-	mul	x10, x10, x11
-# was:	mul	_negaterres_2_, _R_Neg_3_, _L_Neg_4_
-# 	mv	x10,_negaterres_2_
-	addi	x2, x2, 4
-	lw	x1, -4(x2)
-	jr	x1
 # Function main
 f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-	jal	p.getint
-# was:	jal	p.getint, 
-# 	mv	_let_n_6_,x10
-# 	mv	_arg_8_,_let_n_6_
-# 	mv	x10,_arg_8_
-	jal	f.negater
-# was:	jal	f.negater, x10
-# 	mv	_tmp_7_,x10
-	mv	x18, x10
-# was:	mv	_mainres_5_, _tmp_7_
+	li	x11, 6
+# was:	li	_let_x_2_, 6
+	li	x12, 2
+# was:	li	_let_y_3_, 2
+	li	x10, 1
+# was:	li	_let_z_4_, 1
+# 	mv	_plus_L_10_,_let_x_2_
+# 	mv	_plus_R_11_,_let_y_3_
+	add	x11, x11, x12
+# was:	add	_plus_L_8_, _plus_L_10_, _plus_R_11_
+# 	mv	_plus_R_9_,_let_z_4_
+	add	x10, x11, x10
+# was:	add	_plus_L_6_, _plus_L_8_, _plus_R_9_
+	li	x11, 3
+# was:	li	_plus_R_7_, 3
+	add	x18, x10, x11
+# was:	add	_tmp_5_, _plus_L_6_, _plus_R_7_
+# 	mv	_mainres_1_,_tmp_5_
 	mv	x10, x18
-# was:	mv	x10, _mainres_5_
+# was:	mv	x10, _mainres_1_
 	jal	p.putint
 # was:	jal	p.putint, x10
 	mv	x10, x18
-# was:	mv	x10, _mainres_5_
+# was:	mv	x10, _mainres_1_
 	addi	x2, x2, 8
 	lw	x18, -8(x2)
 	lw	x1, -4(x2)
