@@ -1,0 +1,6 @@
+fun int division(int n) =
+  let x = 3; y = n*x; z = iota (y+4) in z[y]
+
+fun int main() =
+  let n = read(int) in
+  write(division(n))
