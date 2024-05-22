@@ -280,7 +280,7 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
          the value of `a`; otherwise raise an error (containing
          a meaningful message).
   *)
-  | Replicate (_, _, _, _) ->
+  | Replicate (n_exp, a_exp, tp, pos) ->
         failwith "Unimplemented interpretation of replicate"
 
   (* TODO project task 2: `filter(p, arr)`

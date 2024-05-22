@@ -29,3 +29,11 @@
 /mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/obj/Debug/net8.0/Fasto.pdb
 /mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/obj/Debug/net8.0/Fasto.genruntimeconfig.cache
 /mnt/c/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/ips/fasto/fasto/Fasto/obj/Debug/net8.0/ref/Fasto.dll
+C:/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/fasto/obj/Debug/net8.0/Fasto.fsproj.AssemblyReference.cache
+C:/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/fasto/obj/Debug/net8.0/Fasto.AssemblyInfoInputs.cache
+C:/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/fasto/obj/Debug/net8.0/Fasto.AssemblyInfo.fs
+C:/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/fasto/obj/Debug/net8.0/Fasto.fsproj.CoreCompileInputs.cache
+C:/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/fasto/obj/Debug/net8.0/Fasto.sourcelink.json
+C:/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/fasto/obj/Debug/net8.0/Fasto.dll
+C:/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/fasto/obj/Debug/net8.0/refint/Fasto.dll
+C:/Users/djafa/OneDrive/Skrivebord/IPS/IPSproject/IPS/fasto/fasto/fasto/obj/Debug/net8.0/Fasto.pdb

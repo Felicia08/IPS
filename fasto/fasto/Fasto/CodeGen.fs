@@ -576,8 +576,45 @@ let rec compileExp  (e      : TypedExp)
         If `n` is less than `0` then remember to terminate the program with
         an error -- see implementation of `iota`.
   *)
-  | Replicate (_, _, _, _) ->
-      failwith "Unimplemented code generation of replicate"
+  | Replicate (n_exp, a_exp, tp, (line, _)) ->
+      let sz_reg = newReg "size"
+      let n_code = compileExp n_exp vtable sz_reg
+      let safe_lab = newLab "safe"
+      let checksize = [ BGE (sz_reg, Rzero, safe_lab)
+                      ; LI (Ra0, line)
+                      ; LA (Ra1, "m.BadSize")
+                      ; J "p.RuntimeError"
+                      ; LABEL (safe_lab)
+                      ]
+
+      let a_reg = newReg "a_exp"
+      let a_code = compileExp a_exp vtable a_reg
+      let arr_reg = newReg "addr"
+      let i_reg = newReg "i"
+      let element_size = (getElemSize tp)
+
+      let init_regs = [ ADDI (arr_reg, place, 4)
+                      ; MV (i_reg, Rzero) ]
+          
+
+      let loop_beg = newLab "loop_beg"
+      let loop_end = newLab "loop_end"
+      let loop_header = [ LABEL (loop_beg)
+                        ; BGE (i_reg, sz_reg, loop_end)]
+      let replicate = [Store element_size (a_reg, arr_reg, 0)
+                        ; ADDI(arr_reg, arr_reg, elemSizeToInt element_size)]
+      let loop_footer = [ADDI (i_reg, i_reg, 1)
+                        ; J loop_beg
+                        ; LABEL loop_end]
+                      
+      n_code
+      @ checksize
+      @ a_code
+      @ dynalloc (sz_reg, place, tp)
+      @ init_regs
+      @ loop_header
+      @ replicate
+      @ loop_footer
 
   (* TODO project task 2: see also the comment to replicate.
      (a) `filter(f, arr)`:  has some similarity with the implementation of map.
