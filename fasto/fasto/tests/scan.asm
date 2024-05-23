@@ -39,26 +39,25 @@ f.writeInt:
 # Function main
 f.main:
 	sw	x1, -4(x2)
-	sw	x23, -28(x2)
 	sw	x22, -24(x2)
 	sw	x21, -20(x2)
 	sw	x20, -16(x2)
 	sw	x19, -12(x2)
 	sw	x18, -8(x2)
-	addi	x2, x2, -28
-	li	x10, 3
+	addi	x2, x2, -24
+	li	x11, 3
 # was:	li	_size_11_, 3
-	mv	x20, x3
+	mv	x19, x3
 # was:	mv	_let_a_10_, x3
-	slli	x11, x10, 2
+	slli	x10, x11, 2
 # was:	slli	_tmp_14_, _size_11_, 2
-	addi	x11, x11, 4
+	addi	x10, x10, 4
 # was:	addi	_tmp_14_, _tmp_14_, 4
-	add	x3, x3, x11
+	add	x3, x3, x10
 # was:	add	x3, x3, _tmp_14_
-	sw	x10, 0(x20)
+	sw	x11, 0(x19)
 # was:	sw	_size_11_, 0(_let_a_10_)
-	addi	x11, x20, 4
+	addi	x11, x19, 4
 # was:	addi	_addr_12_, _let_a_10_, 4
 	li	x10, 1
 # was:	li	_tmp_13_, 1
@@ -79,71 +78,69 @@ f.main:
 	addi	x11, x11, 4
 # was:	addi	_addr_12_, _addr_12_, 4
 # 	mv	_arr_reg_16_,_let_a_10_
-	mv	x19, x3
-# was:	mv	_let_b_15_, x3
-	slli	x10, x18, 2
-# was:	slli	_tmp_24_, _size_17_, 2
-	addi	x10, x10, 4
-# was:	addi	_tmp_24_, _tmp_24_, 4
-	add	x3, x3, x10
-# was:	add	x3, x3, _tmp_24_
-	sw	x18, 0(x19)
-# was:	sw	_size_17_, 0(_let_b_15_)
-	lw	x18, 0(x20)
+	lw	x20, 0(x19)
 # was:	lw	_size_17_, 0(_arr_reg_16_)
-	li	x21, 0
+	li	x10, 0
 # was:	li	_acc_reg_19_, 0
-	addi	x20, x20, 4
+	mv	x18, x3
+# was:	mv	_let_b_15_, x3
+	slli	x11, x20, 2
+# was:	slli	_tmp_24_, _size_17_, 2
+	addi	x11, x11, 4
+# was:	addi	_tmp_24_, _tmp_24_, 4
+	add	x3, x3, x11
+# was:	add	x3, x3, _tmp_24_
+	sw	x20, 0(x18)
+# was:	sw	_size_17_, 0(_let_b_15_)
+	addi	x19, x19, 4
 # was:	addi	_arr_reg_16_, _arr_reg_16_, 4
-	addi	x22, x19, 4
+	addi	x21, x18, 4
 # was:	addi	_out_reg_23_, _let_b_15_, 4
-	mv	x23, x0
+	mv	x22, x0
 # was:	mv	_ind_var_18_, x0
 l.loop_beg_21_:
-	bge	x23, x18, l.loop_end_22_
+	bge	x22, x20, l.loop_end_22_
 # was:	bge	_ind_var_18_, _size_17_, l.loop_end_22_
-	lw	x11, 0(x20)
+	lw	x11, 0(x19)
 # was:	lw	_tmp_20_, 0(_arr_reg_16_)
-	sw	x22, 0(x21)
-# was:	sw	_out_reg_23_, 0(_acc_reg_19_)
-	addi	x22, x22, 4
-# was:	addi	_out_reg_23_, _out_reg_23_, 4
-	addi	x20, x20, 4
+	addi	x19, x19, 4
 # was:	addi	_arr_reg_16_, _arr_reg_16_, 4
-	mv	x10, x21
-# was:	mv	x10, _acc_reg_19_
+# 	mv	x10,_acc_reg_19_
 # 	mv	x11,_tmp_20_
 	jal	f.incr
 # was:	jal	f.incr, x10 x11
 # 	mv	_tmp_25_,x10
-	mv	x11, x10
-# was:	mv	_tmp_20_, _tmp_25_
-	addi	x23, x23, 1
+# 	mv	_acc_reg_19_,_tmp_25_
+	sw	x10, 0(x21)
+# was:	sw	_acc_reg_19_, 0(_out_reg_23_)
+	addi	x21, x21, 4
+# was:	addi	_out_reg_23_, _out_reg_23_, 4
+	addi	x22, x22, 1
 # was:	addi	_ind_var_18_, _ind_var_18_, 1
 	j	l.loop_beg_21_
 l.loop_end_22_:
-	mv	x10, x19
+	mv	x10, x18
 # was:	mv	_arr_27_, _let_b_15_
-	lw	x19, 0(x10)
+	lw	x18, 0(x10)
 # was:	lw	_size_26_, 0(_arr_27_)
-	mv	x18, x3
+	mv	x19, x3
 # was:	mv	_mainres_9_, x3
-	slli	x11, x19, 2
+	slli	x11, x18, 2
 # was:	slli	_tmp_35_, _size_26_, 2
 	addi	x11, x11, 4
 # was:	addi	_tmp_35_, _tmp_35_, 4
 	add	x3, x3, x11
 # was:	add	x3, x3, _tmp_35_
-	sw	x19, 0(x18)
+	sw	x18, 0(x19)
 # was:	sw	_size_26_, 0(_mainres_9_)
-	addi	x20, x18, 4
+	addi	x20, x19, 4
 # was:	addi	_addrg_30_, _mainres_9_, 4
 	mv	x21, x0
 # was:	mv	_i_31_, x0
 	addi	x22, x10, 4
 # was:	addi	_elem_28_, _arr_27_, 4
 l.loop_beg_32_:
-	bge	x21, x19, l.loop_end_33_
+	bge	x21, x18, l.loop_end_33_
 # was:	bge	_i_31_, _size_26_, l.loop_end_33_
 	lw	x10, 0(x22)
 # was:	lw	_res_29_, 0(_elem_28_)
@@ -162,10 +159,9 @@ l.loop_beg_32_:
 # was:	addi	_i_31_, _i_31_, 1
 	j	l.loop_beg_32_
 l.loop_end_33_:
-	mv	x10, x18
+	mv	x10, x19
 # was:	mv	x10, _mainres_9_
-	addi	x2, x2, 28
-	lw	x23, -28(x2)
+	addi	x2, x2, 24
 	lw	x22, -24(x2)
 	lw	x21, -20(x2)
 	lw	x20, -16(x2)
