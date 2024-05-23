@@ -655,35 +655,34 @@ let rec compileExp  (e      : TypedExp)
       let header1 = [ LW(size_reg, arr_reg, 0) ]
 
       (* Compile initial value into place (will be updated below) *)
-      (* Savner DJafars baller *)
       let acc_code = compileExp acc_exp vtable acc_reg
       let allocate = dynalloc(size_reg, place, tp)
-      (* Set arr_reg to address of first element instead. *)
-      (* Set i_reg to 0. While i < size_reg, loop. *)
-      let loop_code =
+      let elem_size = getElemSize tp
+
+      let loop_header =
               [ ADDI (arr_reg, arr_reg, 4)
               ; ADDI (out_reg, place, 4)
               ; MV (i_reg, Rzero)
               ; LABEL (loop_beg)
               ; BGE (i_reg, size_reg, loop_end)
               ]
-      (* Load arr[i] into tmp_reg *)
-      let elem_size = getElemSize tp
       let load_code =
         [ Load elem_size (tmp_reg, arr_reg, 0)
-        ; Store elem_size (out_reg, acc_reg, 0)
-        ; ADDI (out_reg, out_reg, elemSizeToInt elem_size)
         ; ADDI (arr_reg, arr_reg, elemSizeToInt elem_size)
         ]
-      (* place := binop(place, tmp_reg) *)
+      let loop_footer = 
+               [ ADDI(i_reg, i_reg, 1)
+              ; J loop_beg
+              ; LABEL loop_end
+              ]
       let apply_code =
-            applyFunArg(binop, [acc_reg; tmp_reg], vtable, tmp_reg, pos)
+            applyFunArg(binop, [acc_reg; tmp_reg], vtable, acc_reg, pos) @
+            [Store elem_size (acc_reg, out_reg, 0)
+            ; ADDI (out_reg, out_reg, elemSizeToInt elem_size)]
 
-      arr_code @ allocate @ header1 @ acc_code @ loop_code @ load_code @ apply_code @
-         [ ADDI(i_reg, i_reg, 1)
-         ; J loop_beg
-         ; LABEL loop_end
-         ]
+      arr_code @ header1 @ acc_code @ allocate @ loop_header @ load_code @ apply_code @ loop_footer
+
+      
 and applyFunArg ( ff     : TypedFunArg
                 , args   : reg list
                 , vtable : VarTable
