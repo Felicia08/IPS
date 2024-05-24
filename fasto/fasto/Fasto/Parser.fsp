@@ -156,6 +156,8 @@ Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
                      { Replicate ($3, $5, (), $1) }
     | SCAN LPAR FunArg COMMA Exp COMMA Exp RPAR
                      { Scan ($3, $5, $7, (), $1)}
+    | FILTER LPAR FunArg COMMA Exp RPAR 
+                     { Filter ($3, $5, (), $1)}
     //
 
     | ID LBRACKET Exp RBRACKET
