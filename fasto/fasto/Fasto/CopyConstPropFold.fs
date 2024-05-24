@@ -71,14 +71,21 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                     let body' = copyConstPropFoldExp vtable body
                     Let (Dec (name, ed', decpos), body', pos)
 
-        | Times (_, _, _) ->
+        | Times (e1, e2, pos) ->
             (* TODO project task 3: implement as many safe algebraic
                simplifications as you can think of. You may inspire
                yourself from the case of `Plus`. For example:
                      1 * x = ?
                      x * 0 = ?
             *)
-            failwith "Unimplemented copyConstPropFold for multiplication"
+            let e1' = copyConstPropFoldExp vtable e1
+            let e2' = copyConstPropFoldExp vtable e2
+            match (e1', e2') with
+                | (Constant (IntVal x, _), Constant (IntVal y, _)) ->
+                    Constant (IntVal (x * y), pos)
+                | (Constant (IntVal 0, _), _) -> e2'
+                | (_, Constant (IntVal 0, _)) -> e1'
+                | _ -> Times (e1', e2', pos)
         | And (e1, e2, pos) ->
             (* TODO project task 3: see above. You may inspire yourself from
                `Or` below, but that only scratches the surface of what's possible *)
