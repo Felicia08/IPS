@@ -281,7 +281,17 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
          a meaningful message).
   *)
   | Replicate (n_exp, a_exp, tp, pos) ->
-        failwith "Unimplemented interpretation of replicate"
+        let n_val = evalExp(n_exp, vtab, ftab)
+        let a_val = evalExp(a_exp, vtab, ftab)
+        match n_val with
+          | IntVal n ->
+              if n >= 0 then
+                  let arr = List.replicate n a_val
+                  ArrayVal(arr, valueType a_val)
+              else
+                  raise (MyError("Invalid value for replication: ", pos))
+          | otherwise -> raise (MyError("Invalid type for replication:", pos))
+
 
   (* TODO project task 2: `filter(p, arr)`
        pattern match the implementation of map:
@@ -291,6 +301,7 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
          that the return value is a boolean at all);
        - create an `ArrayVal` from the (list) result of the previous step.
   *)
+
   | Filter (_, _, _, _) ->
         failwith "Unimplemented interpretation of filter"
 
