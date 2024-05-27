@@ -302,8 +302,13 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
        - create an `ArrayVal` from the (list) result of the previous step.
   *)
 
-  | Filter (_, _, _, _) ->
-        failwith "Unimplemented interpretation of filter"
+  | Filter (p, arr, tp, pos) ->
+        let arrVal = evalExp(arr, vtab, ftab)
+        match arrVal with
+          | ArrayVal (lst, tp) ->
+               let filteredList = List.filter (fun x -> evalFunArg (p, vtab, ftab, pos, [x]) = BoolVal true) lst
+               ArrayVal (filteredList, tp)
+          | _ -> reportNonArray "2nd argument of \"filter\"" arrVal pos
 
   (* TODO project task 2: `scan(f, ne, arr)`
      Implementation similar to reduce, except that it produces an array
