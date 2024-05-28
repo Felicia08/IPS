@@ -28,17 +28,27 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                 exists and if so, it should replace the current expression
                 with the variable or constant to be propagated.
             *)
-            failwith "Unimplemented copyConstPropFold for Var"
+            let v = SymTab.lookup name vtable
+            match v with 
+                | Some (ConstProp v) -> Constant(v, pos)
+                | Some (VarProp y) -> Var(y, pos)
+                |_ -> Var(name, pos)
         | Index (name, ei, t, pos) ->
             (* TODO project task 3:
                 Should probably do the same as the `Var` case, for
                 the array name, and optimize the index expression `ei` as well.
             *)
-            failwith "Unimplemented copyConstPropFold for Index"
+            let v = SymTab.lookup name vtable
+            let ei' = copyConstPropFoldExp vtable ei
+            match v with 
+                | Some (ConstProp v) -> failwith "Iam gay"
+                | Some (VarProp y) -> Index(y, ei', t, pos)
+                |_ -> Index(name, ei', t, pos)
+                
         | Let (Dec (name, ed, decpos), body, pos) ->
             let ed' = copyConstPropFoldExp vtable ed
             match ed' with
-                | Var (_, _) ->
+                | Var (a, _) ->
                     (* TODO project task 3:
                         Hint: I have discovered a variable-copy statement `let x = a`.
                               I should probably record it in the `vtable` by
@@ -46,7 +56,7 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                               and optimize the `body` of the let.
                     *)
                     failwith "Unimplemented copyConstPropFold for Let with Var"
-                | Constant (_, _) ->
+                | Constant (v, _) ->
                     (* TODO project task 3:
                         Hint: I have discovered a constant-copy statement `let x = 5`.
                               I should probably record it in the `vtable` by
@@ -54,7 +64,7 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                               and optimize the `body` of the let.
                     *)
                     failwith "Unimplemented copyConstPropFold for Let with Constant"
-                | Let (_, _, _) ->
+                | Let (Dec (y, e1, posy), e2, _) ->
                     (* TODO project task 3:
                         Hint: this has the structure
                                 `let y = (let x = e1 in e2) in e3`
