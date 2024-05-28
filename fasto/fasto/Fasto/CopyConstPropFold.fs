@@ -55,7 +55,9 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                               associating `x` with a variable-propagatee binding,
                               and optimize the `body` of the let.
                     *)
-                    failwith "Unimplemented copyConstPropFold for Let with Var"
+                    let updatedvtable = SymTab.bind name (VarProp a) vtable
+                    let body' = copyConstPropFoldExp updatedvtable body
+                    Let(Dec (name, ed', decpos), body', pos)
                 | Constant (v, _) ->
                     (* TODO project task 3:
                         Hint: I have discovered a constant-copy statement `let x = 5`.
@@ -63,7 +65,9 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                               associating `x` with a constant-propagatee binding,
                               and optimize the `body` of the let.
                     *)
-                    failwith "Unimplemented copyConstPropFold for Let with Constant"
+                    let updatedvtable = SymTab.bind name (ConstProp v) vtable
+                    let body' = copyConstPropFoldExp updatedvtable body
+                    let(Dec (name, ed', decpos), body', pos)
                 | Let (Dec (y, e1, posy), e2, _) ->
                     (* TODO project task 3:
                         Hint: this has the structure
