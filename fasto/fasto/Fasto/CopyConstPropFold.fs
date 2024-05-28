@@ -41,7 +41,6 @@ let rec copyConstPropFoldExp (vtable : VarTable)
             let v = SymTab.lookup name vtable
             let ei' = copyConstPropFoldExp vtable ei
             match v with 
-                | Some (ConstProp v) -> failwith "Iam gay"
                 | Some (VarProp y) -> Index(y, ei', t, pos)
                 |_ -> Index(name, ei', t, pos)
                 
@@ -67,7 +66,7 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                     *)
                     let updatedvtable = SymTab.bind name (ConstProp v) vtable
                     let body' = copyConstPropFoldExp updatedvtable body
-                    let(Dec (name, ed', decpos), body', pos)
+                    Let(Dec (name, ed', decpos), body', pos)
                 | Let (Dec (y, e1, posy), e2, _) ->
                     (* TODO project task 3:
                         Hint: this has the structure
@@ -80,7 +79,11 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                         restructured, semantically-equivalent expression:
                                 `let x = e1 in let y = e2 in e3`
                     *)
-                    failwith "Unimplemented copyConstPropFold for Let with Let"
+                    // Reconstructing, so let x = e1 in let y = e2 in e3.
+                    let innerbody = Let(Dec (y, e2, posy), body, pos)
+                    let outerbody = Let(Dec (name, e1, decpos), innerbody, pos)
+                    //Optimize it recuversily wil return optimized body
+                    copyConstPropFoldExp vtable outerbody 
                 | _ -> (* Fallthrough - for everything else, do nothing *)
                     let body' = copyConstPropFoldExp vtable body
                     Let (Dec (name, ed', decpos), body', pos)
@@ -101,9 +104,12 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                 | (_, Constant (IntVal 0, _)) -> e1'
                 | _ -> Times (e1', e2', pos)
         | And (e1, e2, pos) ->
-            (* TODO project task 3: see above. You may inspire yourself from
-               `Or` below, but that only scratches the surface of what's possible *)
-            failwith "Unimplemented copyConstPropFold for &&"
+            let e1' = copyConstPropFoldExp vtable e1
+            let e2' = copyConstPropFoldExp vtable e2
+            match (e1', e2') with
+                | (Constant (BoolVal a, _), Constant (BoolVal b, _)) ->
+                    Constant (BoolVal (a && b), pos)
+                | _ -> And (e1', e2', pos)
         | Constant (x,pos) -> Constant (x,pos)
         | StringLit (x,pos) -> StringLit (x,pos)
         | ArrayLit (es, t, pos) ->
