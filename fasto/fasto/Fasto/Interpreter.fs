@@ -165,22 +165,26 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
             | (_, _) -> reportWrongType "left operand of /" Int r1 (expPos e1)
   | And (e1, e2, pos) ->
       let r1 = evalExp(e1, vtab, ftab)
-      let r2 = evalExp(e2, vtab, ftab)
-      match (r1, r2) with
-          | (BoolVal false, _) -> BoolVal false
-          | (BoolVal true, BoolVal true) -> BoolVal true
-          | (BoolVal true, BoolVal false) -> BoolVal false
-          | (BoolVal _, _) -> reportWrongType "right operand of &&" Int r2 (expPos e2)
-          | (_, _) -> reportWrongType "left operand of &&" (valueType r1) r2 pos
+      match (r1) with
+          | (BoolVal false) -> BoolVal false
+          | (BoolVal true) -> 
+            let r2 = evalExp(e2, vtab, ftab)
+            match (r2) with
+              | (BoolVal false) -> BoolVal false
+              | (BoolVal true) -> BoolVal true
+              | (_) -> reportWrongType "right operand of &&" Bool r2 (expPos e2)
+          | (_) -> reportWrongType "left operand of &&" Bool r1 (expPos e1)
   | Or (e1, e2, pos) ->
       let r1 = evalExp(e1, vtab, ftab)
-      let r2 = evalExp(e2, vtab, ftab)
-      match (r1, r2) with
-          | (BoolVal true, _) -> BoolVal true
-          | (BoolVal false, BoolVal true) -> BoolVal true
-          | (BoolVal false, BoolVal false) -> BoolVal false
-          | (BoolVal _, _) -> reportWrongType "right operand of &&" Int r2 (expPos e2)
-          | (_, _) -> reportWrongType "left operand of &&" (valueType r1) r2 pos
+      match (r1) with
+          | (BoolVal true) -> BoolVal true
+          | (BoolVal false) -> 
+            let r2 = evalExp(e2, vtab, ftab)
+            match (r2) with 
+              | (BoolVal true) -> BoolVal true
+              | (BoolVal false) -> BoolVal false
+              | (_) -> reportWrongType "right operand of &&" Bool r2 (expPos e2)
+          | (_) -> reportWrongType "left operand of &&" Bool r1 (expPos e1)
   | Not(e, pos) ->
       let r1 = evalExp(e, vtab, ftab)
       match r1 with
@@ -303,12 +307,16 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
   *)
 
   | Filter (p, arr, tp, pos) ->
-        let arrVal = evalExp(arr, vtab, ftab)
-        match arrVal with
-          | ArrayVal (lst, tp) ->
-               let filteredList = List.filter (fun x -> evalFunArg (p, vtab, ftab, pos, [x]) = BoolVal true) lst
-               ArrayVal (filteredList, tp)
-          | _ -> reportNonArray "2nd argument of \"filter\"" arrVal pos
+        let farg_ret_type = rtpFunArg p ftab pos
+        if farg_ret_type = Bool then
+          let arrVal = evalExp(arr, vtab, ftab)
+          match arrVal with
+            | ArrayVal (lst, tp) ->
+                let filteredList = List.filter (fun x -> evalFunArg (p, vtab, ftab, pos, [x]) = BoolVal true) lst
+                ArrayVal (filteredList, tp)
+            | _ -> reportNonArray "2nd argument of \"filter\"" arrVal pos
+        else 
+          raise (MyError("The return type is not boolean:", pos))
 
   (* TODO project task 2: `scan(f, ne, arr)`
      Implementation similar to reduce, except that it produces an array
