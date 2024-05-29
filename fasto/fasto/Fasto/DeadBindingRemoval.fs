@@ -154,6 +154,7 @@ let rec removeDeadBindingsInExp (e : TypedExp) : (bool * DBRtab * TypedExp) =
                 Let (Dec (name, e', decpos), body', pos))
             else
                 (io1, bodyuses, body') 
+
         | Iota (e, pos) ->
             let (io, uses, e') = removeDeadBindingsInExp e
             (io,
