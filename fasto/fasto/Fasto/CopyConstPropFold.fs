@@ -104,8 +104,10 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                 | (_, Constant (IntVal 0, _)) -> Constant (IntVal 0, pos)
                 | (Constant (IntVal 1, _), _) -> e2'
                 | (_, Constant (IntVal 1, _)) -> e1'
-                (* MAN KAN OGSÅ LAVE FOR MINUS *)
+                | (Constant (IntVal -1, _), _) -> Negate (e2', pos)
+                | (_, Constant (IntVal -1, _)) -> Negate (e1', pos)
                 | _ -> Times (e1', e2', pos)
+                
         | And (e1, e2, pos) ->
             let e1' = copyConstPropFoldExp vtable e1
             let e2' = copyConstPropFoldExp vtable e2
@@ -113,6 +115,7 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                 | (Constant (BoolVal a, _), Constant (BoolVal b, _)) ->
                     Constant (BoolVal (a && b), pos)
                 | _ -> And (e1', e2', pos)
+
         | Constant (x,pos) -> Constant (x,pos)
         | StringLit (x,pos) -> StringLit (x,pos)
         | ArrayLit (es, t, pos) ->
