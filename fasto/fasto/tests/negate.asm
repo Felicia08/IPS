@@ -8,131 +8,143 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-	li	x0, 1
-# was:	li	_let_x0_2_, 1
-	li	x0, 1
-# was:	li	_let_b_I1_3_, 1
 	li	x11, 1
-# was:	li	_tmp_5_, 1
-# 	mv	_let_b_4_,_tmp_5_
+# was:	li	_tmp_3_, 1
+# 	mv	_let_res_2_,_tmp_3_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_6_
-# was:	bne	_let_b_4_, x0, l.wBoolF_6_
+	bne	x11, x0, l.wBoolF_4_
+# was:	bne	_let_res_2_, x0, l.wBoolF_4_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_6_:
+l.wBoolF_4_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-	la	x10, s.X_9_
-# was:	la	_tmp_8_, s.X_9_
-# s.X_9_: string "\n"
-	mv	x18, x10
-# was:	mv	_let_res_7_, _tmp_8_
-# 	mv	x10,_tmp_8_
+	la	x10, s.X_7_
+# was:	la	_tmp_6_, s.X_7_
+# s.X_7_: string "\n"
+# 	mv	_let_tmp_5_,_tmp_6_
+# 	mv	x10,_tmp_6_
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-# 	mv	_let_tmp_10_,_let_res_7_
-	li	x0, 0
-# was:	li	_let_x1_11_, 0
-	li	x0, 0
-# was:	li	_let_b_I2_12_, 0
 	li	x11, 0
-# was:	li	_tmp_14_, 0
-# 	mv	_let_b_13_,_tmp_14_
+# was:	li	_tmp_9_, 0
+# 	mv	_let_res_8_,_tmp_9_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_15_
-# was:	bne	_let_b_13_, x0, l.wBoolF_15_
+	bne	x11, x0, l.wBoolF_10_
+# was:	bne	_let_res_8_, x0, l.wBoolF_10_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_15_:
+l.wBoolF_10_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-	la	x10, s.X_18_
-# was:	la	_tmp_17_, s.X_18_
-# s.X_18_: string "\n"
-	mv	x18, x10
-# was:	mv	_let_res_16_, _tmp_17_
-# 	mv	x10,_tmp_17_
+	la	x10, s.X_13_
+# was:	la	_tmp_12_, s.X_13_
+# s.X_13_: string "\n"
+# 	mv	_let_tmp_11_,_tmp_12_
+# 	mv	x10,_tmp_12_
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-# 	mv	_let_tmp_19_,_let_res_16_
-	li	x0, 0
-# was:	li	_let_x2_20_, 0
-	li	x0, 0
-# was:	li	_let_b_I3_21_, 0
 	li	x11, 0
-# was:	li	_tmp_23_, 0
-# 	mv	_let_b_22_,_tmp_23_
+# was:	li	_tmp_15_, 0
+# 	mv	_let_res_14_,_tmp_15_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_24_
-# was:	bne	_let_b_22_, x0, l.wBoolF_24_
+	bne	x11, x0, l.wBoolF_16_
+# was:	bne	_let_res_14_, x0, l.wBoolF_16_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_24_:
+l.wBoolF_16_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-	la	x10, s.X_27_
-# was:	la	_tmp_26_, s.X_27_
-# s.X_27_: string "\n"
-	mv	x18, x10
-# was:	mv	_let_res_25_, _tmp_26_
-# 	mv	x10,_tmp_26_
+	la	x10, s.X_19_
+# was:	la	_tmp_18_, s.X_19_
+# s.X_19_: string "\n"
+# 	mv	_let_tmp_17_,_tmp_18_
+# 	mv	x10,_tmp_18_
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-# 	mv	_let_tmp_28_,_let_res_25_
-	li	x0, 1
-# was:	li	_let_x3_29_, 1
-	li	x0, 1
-# was:	li	_let_b_I4_30_, 1
-	li	x11, 1
-# was:	li	_tmp_32_, 1
-# 	mv	_let_b_31_,_tmp_32_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_33_
-# was:	bne	_let_b_31_, x0, l.wBoolF_33_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_33_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	la	x10, s.X_36_
-# was:	la	_tmp_35_, s.X_36_
-# s.X_36_: string "\n"
-	mv	x18, x10
-# was:	mv	_let_res_34_, _tmp_35_
-# 	mv	x10,_tmp_35_
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-# 	mv	_let_tmp_37_,_let_res_34_
-	li	x0, 1
-# was:	li	_let_b_I5_38_, 1
-	li	x0, 1
-# was:	li	_let_b_39_, 1
 	li	x18, 1
-# was:	li	_tmp_41_, 1
-# 	mv	_let_res_40_,_tmp_41_
+# was:	li	_tmp_21_, 1
+# 	mv	_let_res_20_,_tmp_21_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x18, x0, l.wBoolF_42_
-# was:	bne	_let_res_40_, x0, l.wBoolF_42_
+	bne	x18, x0, l.wBoolF_22_
+# was:	bne	_let_res_20_, x0, l.wBoolF_22_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_42_:
+l.wBoolF_22_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-	la	x10, s.X_45_
-# was:	la	_tmp_44_, s.X_45_
-# s.X_45_: string "\n"
-# 	mv	_let_tmp_43_,_tmp_44_
-# 	mv	x10,_tmp_44_
+	la	x10, s.X_25_
+# was:	la	_tmp_24_, s.X_25_
+# s.X_25_: string "\n"
+# 	mv	_let_tmp_23_,_tmp_24_
+# 	mv	x10,_tmp_24_
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+# 	mv	_cond_L_31_,_let_res_20_
+	beq	x18, x0, l.false_34_
+# was:	beq	_cond_L_31_, x0, l.false_34_
+# 	mv	_Not_33_,_let_res_20_
+	xori	x10, x18, 1
+# was:	xori	_cond_R_32_, _Not_33_, 1
+	beq	x10, x0, l.false_34_
+# was:	beq	_cond_R_32_, x0, l.false_34_
+	li	x10, 1
+# was:	li	_cond_L_29_, 1
+	j	l.end_35_
+l.false_34_:
+	li	x10, 0
+# was:	li	_cond_L_29_, 0
+l.end_35_:
+	beq	x10, x0, l.false_37_
+# was:	beq	_cond_L_29_, x0, l.false_37_
+# 	mv	_Not_36_,_let_res_20_
+	xori	x10, x18, 1
+# was:	xori	_cond_R_30_, _Not_36_, 1
+	beq	x10, x0, l.false_37_
+# was:	beq	_cond_R_30_, x0, l.false_37_
+	li	x10, 1
+# was:	li	_cond_L_27_, 1
+	j	l.end_38_
+l.false_37_:
+	li	x10, 0
+# was:	li	_cond_L_27_, 0
+l.end_38_:
+	beq	x10, x0, l.false_39_
+# was:	beq	_cond_L_27_, x0, l.false_39_
+# 	mv	_cond_R_28_,_let_res_20_
+	beq	x18, x0, l.false_39_
+# was:	beq	_cond_R_28_, x0, l.false_39_
+	li	x18, 1
+# was:	li	_let_b_I5_26_, 1
+	j	l.end_40_
+l.false_39_:
+	li	x18, 0
+# was:	li	_let_b_I5_26_, 0
+l.end_40_:
+# 	mv	_tmp_42_,_let_b_I5_26_
+# 	mv	_let_res_41_,_tmp_42_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x18, x0, l.wBoolF_43_
+# was:	bne	_let_res_41_, x0, l.wBoolF_43_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_43_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+	la	x10, s.X_46_
+# was:	la	_tmp_45_, s.X_46_
+# s.X_46_: string "\n"
+# 	mv	_let_tmp_44_,_tmp_45_
+# 	mv	x10,_tmp_45_
 	jal	p.putstring
 # was:	jal	p.putstring, x10
 	mv	x10, x18
-# was:	mv	_mainres_1_, _let_res_40_
+# was:	mv	_mainres_1_, _let_res_41_
 # 	mv	x10,_mainres_1_
 	addi	x2, x2, 8
 	lw	x18, -8(x2)
@@ -220,23 +232,23 @@ m.DivZero:
 	.asciz	"division by zero"
 # String literals (including lengths) from program
 	.align	2
-s.X_45_:
+s.X_46_:
 	.word	1
 	.ascii	"\n"
 	.align	2
-s.X_36_:
+s.X_25_:
 	.word	1
 	.ascii	"\n"
 	.align	2
-s.X_27_:
+s.X_19_:
 	.word	1
 	.ascii	"\n"
 	.align	2
-s.X_18_:
+s.X_13_:
 	.word	1
 	.ascii	"\n"
 	.align	2
-s.X_9_:
+s.X_7_:
 	.word	1
 	.ascii	"\n"
 	.align	2
