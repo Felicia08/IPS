@@ -11,14 +11,9 @@ f.main:
 	jal	p.getint
 # was:	jal	p.getint, 
 # 	mv	_let_a_2_,x10
-	mv	x11, x10
-# was:	mv	_plus_L_4_, _let_a_2_
-	li	x10, 2
-# was:	li	_plus_R_5_, 2
-	add	x18, x11, x10
-# was:	add	_let_b_3_, _plus_L_4_, _plus_R_5_
-# 	mv	_tmp_6_,_let_b_3_
-# 	mv	_mainres_1_,_tmp_6_
+	li	x18, 0
+# was:	li	_tmp_3_, 0
+# 	mv	_mainres_1_,_tmp_3_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint
