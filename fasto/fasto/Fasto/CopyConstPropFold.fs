@@ -100,8 +100,11 @@ let rec copyConstPropFoldExp (vtable : VarTable)
             match (e1', e2') with
                 | (Constant (IntVal x, _), Constant (IntVal y, _)) ->
                     Constant (IntVal (x * y), pos)
-                | (Constant (IntVal 0, _), _) -> e2'
-                | (_, Constant (IntVal 0, _)) -> e1'
+                | (Constant (IntVal 0, _), _) -> Constant (IntVal 0, pos)
+                | (_, Constant (IntVal 0, _)) -> Constant (IntVal 0, pos)
+                | (Constant (IntVal 1, _), _) -> e2'
+                | (_, Constant (IntVal 1, _)) -> e1'
+                (* MAN KAN OGSÅ LAVE FOR MINUS *)
                 | _ -> Times (e1', e2', pos)
         | And (e1, e2, pos) ->
             let e1' = copyConstPropFoldExp vtable e1
