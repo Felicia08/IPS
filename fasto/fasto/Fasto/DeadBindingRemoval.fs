@@ -148,13 +148,12 @@ let rec removeDeadBindingsInExp (e : TypedExp) : (bool * DBRtab * TypedExp) =
             *)
             let (io1, bodyuses, body') = removeDeadBindingsInExp body
             let (io2, euses, e') = removeDeadBindingsInExp e
-            let combinedSym = (SymTab.combine bodyuses euses)
-            if ((io1 || io2) = true) || isUsed name combinedSym then
-                ((io1 || io2),(combinedSym), Let (Dec (name, e', decpos), body', pos))
+            if (isUsed name bodyuses) || io2 then
+                ((io1 || io2),
+                SymTab.combine (SymTab.remove name bodyuses) euses, 
+                Let (Dec (name, e', decpos), body', pos))
             else
-                ((io1 || io2),(combinedSym), body') // DET HER 
-                //ER FORKERT BURDE ÆNDRE HVIS IKKE RIGTIGT
-                // pLEASE IKKE OVERSE
+                (io1, bodyuses, body') 
         | Iota (e, pos) ->
             let (io, uses, e') = removeDeadBindingsInExp e
             (io,

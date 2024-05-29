@@ -67,7 +67,7 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                     let updatedvtable = SymTab.bind name (ConstProp v) vtable
                     let body' = copyConstPropFoldExp updatedvtable body
                     Let(Dec (name, ed', decpos), body', pos)
-                | Let (Dec (y, e1, posy), e2, _) ->
+                | Let (Dec (y, e1, posy), e2, pos2) ->
                     (* TODO project task 3:
                         Hint: this has the structure
                                 `let y = (let x = e1 in e2) in e3`
@@ -79,9 +79,9 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                         restructured, semantically-equivalent expression:
                                 `let x = e1 in let y = e2 in e3`
                     *)
-                    // Reconstructing, so let x = e1 in let y = e2 in e3.
-                    let innerbody = Let(Dec (y, e2, posy), body, pos)
-                    let outerbody = Let(Dec (name, e1, decpos), innerbody, pos)
+                    // Reconstructing, so let y = e1 in let x = e2 in e3.
+                    let innerbody = Let (Dec (name, e2, posy), body, pos2)
+                    let outerbody = Let (Dec (y, e1, decpos), innerbody, pos)
                     //Optimize it recuversily wil return optimized body
                     copyConstPropFoldExp vtable outerbody 
                 | _ -> (* Fallthrough - for everything else, do nothing *)
