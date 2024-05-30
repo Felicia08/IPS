@@ -140,6 +140,8 @@ Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
                      { Write ($3, (), $1) }
     | IOTA LPAR Exp RPAR
                      { Iota ($3, $1) }
+    | LENGTH LPAR Exp RPAR
+                     { Length ($3, (), $1) }
     | MAP LPAR FunArg COMMA Exp RPAR
                      { Map ($3, $5, (), (), $1) }
     | REDUCE LPAR FunArg COMMA Exp COMMA Exp RPAR
