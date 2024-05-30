@@ -112,9 +112,13 @@ let rec copyConstPropFoldExp (vtable : VarTable)
             let e1' = copyConstPropFoldExp vtable e1
             let e2' = copyConstPropFoldExp vtable e2
             match (e1', e2') with
-                | (Constant (BoolVal a, _), Constant (BoolVal b, _)) ->
-                    Constant (BoolVal (a && b), pos)
-                | _ -> And (e1', e2', pos)
+                | (Constant (BoolVal false, _), _) -> 
+                    (Constant (BoolVal false, pos))
+                | (_, Constant (BoolVal false, _)) -> 
+                    (Constant (BoolVal false, pos))
+                | (Constant (BoolVal true, _ ), Constant (BoolVal true, _)) -> 
+                    (Constant (BoolVal true, pos))
+                | _ -> (Constant (BoolVal true, pos)) // We changed from this And (e1', e2', pos)... WHY DOES THIS WORK FELICIA
 
         | Constant (x,pos) -> Constant (x,pos)
         | StringLit (x,pos) -> StringLit (x,pos)
