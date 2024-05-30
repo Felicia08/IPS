@@ -64,14 +64,11 @@ l.nonneg_15_:
 # was:	slli	_arr_ind_11_, _arr_ind_11_, 2
 	add	x12, x12, x11
 # was:	add	_arr_data_12_, _arr_data_12_, _arr_ind_11_
-	lw	x11, 0(x12)
+	lw	x10, 0(x12)
 # was:	lw	_let_x_10_, 0(_arr_data_12_)
-# 	mv	_times_L_17_,_let_x_10_
-	li	x10, 1
-# was:	li	_times_R_18_, 1
-	mul	x18, x11, x10
-# was:	mul	_tmp_16_, _times_L_17_, _times_R_18_
-# 	mv	_mainres_1_,_tmp_16_
+# 	mv	_tmp_16_,_let_x_10_
+	mv	x18, x10
+# was:	mv	_mainres_1_, _tmp_16_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint
