@@ -1,13 +1,7 @@
-fun bool write_nl(bool b) =
-  let res = write(b) in
-  let tmp = write("\n") in
-  res
-
 fun bool main() =
-  let x0 = write_nl(2 * 2 == 5) in
-  let x1 = write_nl(0 * 5 == 0) in
-  let x2 = write_nl(5 * 0 == 0) in
-  let x3 = write_nl(4 * ~1 == ~4) in
-  let x4 = write_nl(~4 * 1 == ~4) in
-  write_nl(~4 * ~1 == 4)
-  
+  let x0 = write(2 * 2 == 5) in
+  let x1 = write(0 * 5 == 0) in
+  let x2 = write(5 * 0 == 0) in
+  let x3 = write(4 * ~1 == ~4) in
+  let x4 = write(~4 * 1 == ~4) in
+  write(~4 * ~1 == 4)
