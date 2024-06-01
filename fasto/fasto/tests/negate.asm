@@ -6,107 +6,158 @@
 # Function main
 f.main:
 	sw	x1, -4(x2)
+	sw	x21, -20(x2)
+	sw	x20, -16(x2)
+	sw	x19, -12(x2)
 	sw	x18, -8(x2)
-	addi	x2, x2, -8
-	li	x11, 1
-# was:	li	_tmp_3_, 1
-# 	mv	_let_res_2_,_tmp_3_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_4_
-# was:	bne	_let_res_2_, x0, l.wBoolF_4_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_4_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	la	x10, s.X_7_
-# was:	la	_tmp_6_, s.X_7_
-# s.X_7_: string "\n"
-# 	mv	_let_tmp_5_,_tmp_6_
-# 	mv	x10,_tmp_6_
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	li	x11, 0
-# was:	li	_tmp_9_, 0
-# 	mv	_let_res_8_,_tmp_9_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_10_
-# was:	bne	_let_res_8_, x0, l.wBoolF_10_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_10_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	la	x10, s.X_13_
-# was:	la	_tmp_12_, s.X_13_
-# s.X_13_: string "\n"
-# 	mv	_let_tmp_11_,_tmp_12_
-# 	mv	x10,_tmp_12_
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	li	x11, 0
-# was:	li	_tmp_15_, 0
-# 	mv	_let_res_14_,_tmp_15_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_16_
-# was:	bne	_let_res_14_, x0, l.wBoolF_16_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_16_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	la	x10, s.X_19_
-# was:	la	_tmp_18_, s.X_19_
-# s.X_19_: string "\n"
-# 	mv	_let_tmp_17_,_tmp_18_
-# 	mv	x10,_tmp_18_
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	li	x11, 1
-# was:	li	_tmp_21_, 1
-# 	mv	_let_res_20_,_tmp_21_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_22_
-# was:	bne	_let_res_20_, x0, l.wBoolF_22_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_22_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	la	x10, s.X_25_
-# was:	la	_tmp_24_, s.X_25_
-# s.X_25_: string "\n"
-# 	mv	_let_tmp_23_,_tmp_24_
-# 	mv	x10,_tmp_24_
-	jal	p.putstring
-# was:	jal	p.putstring, x10
+	addi	x2, x2, -20
 	li	x18, 1
-# was:	li	_tmp_27_, 1
-# 	mv	_let_res_26_,_tmp_27_
+# was:	li	_tmp_4_, 1
+# 	mv	_let_res_3_,_tmp_4_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x18, x0, l.wBoolF_28_
-# was:	bne	_let_res_26_, x0, l.wBoolF_28_
+	bne	x18, x0, l.wBoolF_5_
+# was:	bne	_let_res_3_, x0, l.wBoolF_5_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_28_:
+l.wBoolF_5_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-	la	x10, s.X_31_
-# was:	la	_tmp_30_, s.X_31_
-# s.X_31_: string "\n"
-# 	mv	_let_tmp_29_,_tmp_30_
-# 	mv	x10,_tmp_30_
+	la	x10, s.X_8_
+# was:	la	_tmp_7_, s.X_8_
+# s.X_8_: string "\n"
+# 	mv	_let_tmp_6_,_tmp_7_
+# 	mv	x10,_tmp_7_
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+# 	mv	_let_x0_2_,_let_res_3_
+	li	x19, 0
+# was:	li	_tmp_11_, 0
+# 	mv	_let_res_10_,_tmp_11_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x19, x0, l.wBoolF_12_
+# was:	bne	_let_res_10_, x0, l.wBoolF_12_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_12_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+	la	x10, s.X_15_
+# was:	la	_tmp_14_, s.X_15_
+# s.X_15_: string "\n"
+# 	mv	_let_tmp_13_,_tmp_14_
+# 	mv	x10,_tmp_14_
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+# 	mv	_let_x1_9_,_let_res_10_
+	li	x20, 0
+# was:	li	_tmp_18_, 0
+# 	mv	_let_res_17_,_tmp_18_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x20, x0, l.wBoolF_19_
+# was:	bne	_let_res_17_, x0, l.wBoolF_19_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_19_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+	la	x10, s.X_22_
+# was:	la	_tmp_21_, s.X_22_
+# s.X_22_: string "\n"
+# 	mv	_let_tmp_20_,_tmp_21_
+# 	mv	x10,_tmp_21_
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+# 	mv	_let_x2_16_,_let_res_17_
+	li	x21, 1
+# was:	li	_tmp_25_, 1
+# 	mv	_let_res_24_,_tmp_25_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x21, x0, l.wBoolF_26_
+# was:	bne	_let_res_24_, x0, l.wBoolF_26_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_26_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+	la	x10, s.X_29_
+# was:	la	_tmp_28_, s.X_29_
+# s.X_29_: string "\n"
+# 	mv	_let_tmp_27_,_tmp_28_
+# 	mv	x10,_tmp_28_
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+# 	mv	_let_x3_23_,_let_res_24_
+# 	mv	_cond_L_35_,_let_x0_2_
+	beq	x18, x0, l.false_38_
+# was:	beq	_cond_L_35_, x0, l.false_38_
+# 	mv	_Not_37_,_let_x1_9_
+	xori	x10, x19, 1
+# was:	xori	_cond_R_36_, _Not_37_, 1
+	beq	x10, x0, l.false_38_
+# was:	beq	_cond_R_36_, x0, l.false_38_
+	li	x10, 1
+# was:	li	_cond_L_33_, 1
+	j	l.end_39_
+l.false_38_:
+	li	x10, 0
+# was:	li	_cond_L_33_, 0
+l.end_39_:
+	beq	x10, x0, l.false_41_
+# was:	beq	_cond_L_33_, x0, l.false_41_
+# 	mv	_Not_40_,_let_x2_16_
+	xori	x10, x20, 1
+# was:	xori	_cond_R_34_, _Not_40_, 1
+	beq	x10, x0, l.false_41_
+# was:	beq	_cond_R_34_, x0, l.false_41_
+	li	x10, 1
+# was:	li	_cond_L_31_, 1
+	j	l.end_42_
+l.false_41_:
+	li	x10, 0
+# was:	li	_cond_L_31_, 0
+l.end_42_:
+	beq	x10, x0, l.false_43_
+# was:	beq	_cond_L_31_, x0, l.false_43_
+# 	mv	_cond_R_32_,_let_x3_23_
+	beq	x21, x0, l.false_43_
+# was:	beq	_cond_R_32_, x0, l.false_43_
+	li	x10, 1
+# was:	li	_let_b_I5_30_, 1
+	j	l.end_44_
+l.false_43_:
+	li	x10, 0
+# was:	li	_let_b_I5_30_, 0
+l.end_44_:
+# 	mv	_tmp_46_,_let_b_I5_30_
+	mv	x18, x10
+# was:	mv	_let_res_45_, _tmp_46_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x18, x0, l.wBoolF_47_
+# was:	bne	_let_res_45_, x0, l.wBoolF_47_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_47_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+	la	x10, s.X_50_
+# was:	la	_tmp_49_, s.X_50_
+# s.X_50_: string "\n"
+# 	mv	_let_tmp_48_,_tmp_49_
+# 	mv	x10,_tmp_49_
 	jal	p.putstring
 # was:	jal	p.putstring, x10
 	mv	x10, x18
-# was:	mv	_mainres_1_, _let_res_26_
+# was:	mv	_mainres_1_, _let_res_45_
 # 	mv	x10,_mainres_1_
-	addi	x2, x2, 8
+	addi	x2, x2, 20
+	lw	x21, -20(x2)
+	lw	x20, -16(x2)
+	lw	x19, -12(x2)
 	lw	x18, -8(x2)
 	lw	x1, -4(x2)
 	jr	x1
@@ -192,23 +243,23 @@ m.DivZero:
 	.asciz	"division by zero"
 # String literals (including lengths) from program
 	.align	2
-s.X_31_:
+s.X_50_:
 	.word	1
 	.ascii	"\n"
 	.align	2
-s.X_25_:
+s.X_29_:
 	.word	1
 	.ascii	"\n"
 	.align	2
-s.X_19_:
+s.X_22_:
 	.word	1
 	.ascii	"\n"
 	.align	2
-s.X_13_:
+s.X_15_:
 	.word	1
 	.ascii	"\n"
 	.align	2
-s.X_7_:
+s.X_8_:
 	.word	1
 	.ascii	"\n"
 	.align	2

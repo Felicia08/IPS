@@ -118,8 +118,8 @@ let rec copyConstPropFoldExp (vtable : VarTable)
                     (Constant (BoolVal false, pos))
                 | (Constant (BoolVal true, _ ), Constant (BoolVal true, _)) -> 
                     (Constant (BoolVal true, pos))
-                | _ -> (Constant (BoolVal true, pos)) // We changed from this And (e1', e2', pos)... WHY DOES THIS WORK FELICIA
-
+                | _ -> And (e1', e2', pos)
+                
         | Constant (x,pos) -> Constant (x,pos)
         | StringLit (x,pos) -> StringLit (x,pos)
         | ArrayLit (es, t, pos) ->

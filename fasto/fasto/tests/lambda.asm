@@ -16,9 +16,9 @@ f.main:
 	jal	p.getint
 # was:	jal	p.getint, 
 # 	mv	_let_N_2_,x10
-	mv	x12, x10
+	mv	x11, x10
 # was:	mv	_size_4_, _let_N_2_
-	bge	x12, x0, l.safe_5_
+	bge	x11, x0, l.safe_5_
 # was:	bge	_size_4_, x0, l.safe_5_
 	li	x10, 7
 # was:	li	x10, 7
@@ -28,26 +28,26 @@ f.main:
 l.safe_5_:
 	mv	x14, x3
 # was:	mv	_let_z_3_, x3
-	slli	x10, x12, 2
+	slli	x10, x11, 2
 # was:	slli	_tmp_10_, _size_4_, 2
 	addi	x10, x10, 4
 # was:	addi	_tmp_10_, _tmp_10_, 4
 	add	x3, x3, x10
 # was:	add	x3, x3, _tmp_10_
-	sw	x12, 0(x14)
+	sw	x11, 0(x14)
 # was:	sw	_size_4_, 0(_let_z_3_)
-	addi	x11, x14, 4
+	addi	x10, x14, 4
 # was:	addi	_addr_6_, _let_z_3_, 4
-	mv	x10, x0
+	mv	x12, x0
 # was:	mv	_i_7_, x0
 l.loop_beg_8_:
-	bge	x10, x12, l.loop_end_9_
+	bge	x12, x11, l.loop_end_9_
 # was:	bge	_i_7_, _size_4_, l.loop_end_9_
-	sw	x10, 0(x11)
+	sw	x12, 0(x10)
 # was:	sw	_i_7_, 0(_addr_6_)
-	addi	x11, x11, 4
+	addi	x10, x10, 4
 # was:	addi	_addr_6_, _addr_6_, 4
-	addi	x10, x10, 1
+	addi	x12, x12, 1
 # was:	addi	_i_7_, _i_7_, 1
 	j	l.loop_beg_8_
 l.loop_end_9_:
@@ -164,9 +164,10 @@ l.loop_beg_44_:
 # was:	addi	_ind_var_42_, _ind_var_42_, 1
 	j	l.loop_beg_44_
 l.loop_end_45_:
-# 	mv	_tmp_49_,_let_x_I2_39_
+# 	mv	_let_x_49_,_let_x_I2_39_
+# 	mv	_tmp_50_,_let_x_49_
 	mv	x18, x11
-# was:	mv	_mainres_1_, _tmp_49_
+# was:	mv	_mainres_1_, _tmp_50_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint
