@@ -1,0 +1,1 @@
+Interpreter error: Bad type for right operand of &&: expected bool, but got int (5) at line 2, column 19

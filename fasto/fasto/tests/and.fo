@@ -1,12 +1,7 @@
-fun bool write_nl(bool b) =
-  let res = write(b) in
-  let tmp = write("\n") in
-  res
-
 fun bool main() =
-  let x0 = write_nl(true && true) in
-  let x1 = write_nl(true && false) in
-  let x2 = write_nl(false && true) in
-  let x3 = write_nl(false && false) in
-  let x4 = write_nl((5 == 5) && (5 == 5)) in
-  write_nl((5 == 5) && (5 == 3))
+  let x0 = write(true && true) in
+  let x1 = write(true && false) in
+  let x2 = write(false && true) in
+  let x3 = write(false && false) in
+  let x4 = write((5 == 5) && (5 == 5)) in
+  write((5 == 5) && (5 == 3))

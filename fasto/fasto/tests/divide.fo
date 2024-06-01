@@ -1,10 +1,5 @@
-fun bool write_nl(bool b) =
-  let res = write(b) in
-  let tmp = write("\n") in
-  res
-
 fun bool main() =
-  let x0 = write_nl(0 / 2 == 0) in
-  let x1 = write_nl(2 / ~2 == ~1) in
-  let x2 = write_nl(~2 / 2 == ~1) in
-  write_nl(~2 /~2 == 1)
+  let x0 = write(0 / 2 == 0) in
+  let x1 = write(2 / ~2 == ~1) in
+  let x2 = write(~2 / 2 == ~1) in
+  write(~2 /~2 == 1)
