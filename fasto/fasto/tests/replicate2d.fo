@@ -1,0 +1,7 @@
+fun int write_int(int x) = write(x)
+fun  [int]  write_1darr( [int]  x) = map(write_int  , x)
+fun [[int]] write_2darr([[int]] x) = map(write_1darr, x)
+
+fun [[int]] main() =
+  let fs = replicate(5, {1, 2, 4}) 
+  in write_2darr(fs)
