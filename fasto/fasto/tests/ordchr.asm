@@ -16,8 +16,8 @@ f.main:
 # was:	jal	p.getint, 
 # 	mv	_let_n_2_,x10
 	mv	x12, x10
-# was:	mv	_let_n_3_, _let_n_2_
-# 	mv	_size_9_,_let_n_3_
+# was:	mv	_let_n_4_, _let_n_2_
+# 	mv	_size_9_,_let_n_4_
 	bge	x12, x0, l.safe_10_
 # was:	bge	_size_9_, x0, l.safe_10_
 	li	x10, 3
@@ -54,7 +54,7 @@ l.loop_end_14_:
 	lw	x20, 0(x10)
 # was:	lw	_size_5_, 0(_arr_6_)
 	mv	x19, x3
-# was:	mv	_let_s1_4_, x3
+# was:	mv	_let_s1_3_, x3
 	addi	x11, x20, 3
 # was:	addi	_tmp_21_, _size_5_, 3
 	andi	x11, x11, -4
@@ -64,9 +64,9 @@ l.loop_end_14_:
 	add	x3, x3, x11
 # was:	add	x3, x3, _tmp_21_
 	sw	x20, 0(x19)
-# was:	sw	_size_5_, 0(_let_s1_4_)
+# was:	sw	_size_5_, 0(_let_s1_3_)
 	addi	x18, x19, 4
-# was:	addi	_addrg_16_, _let_s1_4_, 4
+# was:	addi	_addrg_16_, _let_s1_3_, 4
 	mv	x21, x0
 # was:	mv	_i_17_, x0
 	addi	x22, x10, 4
@@ -91,7 +91,7 @@ l.loop_beg_18_:
 	j	l.loop_beg_18_
 l.loop_end_19_:
 	mv	x10, x19
-# was:	mv	_arr_32_, _let_s1_4_
+# was:	mv	_arr_32_, _let_s1_3_
 	lw	x20, 0(x10)
 # was:	lw	_size_31_, 0(_arr_32_)
 	mv	x18, x3
