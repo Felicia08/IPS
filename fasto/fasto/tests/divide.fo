@@ -7,5 +7,4 @@ fun bool main() =
   let x0 = write_nl(0 / 2 == 0) in
   let x1 = write_nl(2 / ~2 == ~1) in
   let x2 = write_nl(~2 / 2 == ~1) in
-  let x3 = write_nl(~2 /~2 == 1) in
-  write_nl(x0 && x1 && x2 && x3)
+  write_nl(~2 /~2 == 1)

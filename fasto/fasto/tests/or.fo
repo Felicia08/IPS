@@ -9,5 +9,4 @@ fun bool main() =
   let x2 = write_nl(false || true) in
   let x3 = write_nl(false || false) in
   let x4 = write_nl((5 == 4) || (5 == 5)) in
-  let x5 = write_nl((5 == 4) || (5 == 4)) in
-  write_nl(x0 && x1 && x2 && not x3 && x4 && not x5)
+  write_nl((5 == 4) || (5 == 4))
