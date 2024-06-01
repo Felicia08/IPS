@@ -8,24 +8,26 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-	li	x11, 6
-# was:	li	_let_x_2_, 6
-	li	x12, 2
-# was:	li	_let_y_3_, 2
-	li	x10, 1
-# was:	li	_let_z_4_, 1
-# 	mv	_plus_L_10_,_let_x_2_
-# 	mv	_plus_R_11_,_let_y_3_
-	add	x11, x11, x12
-# was:	add	_plus_L_8_, _plus_L_10_, _plus_R_11_
-# 	mv	_plus_R_9_,_let_z_4_
-	add	x10, x11, x10
-# was:	add	_plus_L_6_, _plus_L_8_, _plus_R_9_
-	li	x11, 3
-# was:	li	_plus_R_7_, 3
-	add	x18, x10, x11
-# was:	add	_tmp_5_, _plus_L_6_, _plus_R_7_
-# 	mv	_mainres_1_,_tmp_5_
+	jal	p.getint
+# was:	jal	p.getint, 
+# 	mv	_let_n_2_,x10
+	mv	x11, x10
+# was:	mv	_div_L_4_, _let_n_2_
+	li	x10, 0
+# was:	li	_div_R_5_, 0
+	beq	x10, x0, l.error_7_
+# was:	beq	_div_R_5_, x0, l.error_7_
+	div	x18, x11, x10
+# was:	div	_tmp_3_, _div_L_4_, _div_R_5_
+	j	l.labelend_6_
+l.error_7_:
+	li	x10, 3
+# was:	li	x10, 3
+	la	x11, m.DivZero
+# was:	la	x11, m.DivZero
+	j	p.RuntimeError
+l.labelend_6_:
+# 	mv	_mainres_1_,_tmp_3_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint

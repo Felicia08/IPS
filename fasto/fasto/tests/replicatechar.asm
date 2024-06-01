@@ -3,107 +3,117 @@
 	jal	f.main
 	jal	p.stop
 # User functions
+# Function writeChar
+f.writeChar:
+	sw	x1, -4(x2)
+	sw	x18, -8(x2)
+	addi	x2, x2, -8
+# 	mv	_param_c_1_,x10
+	mv	x18, x10
+# was:	mv	_tmp_3_, _param_c_1_
+# 	mv	_writeCharres_2_,_tmp_3_
+	mv	x10, x18
+# was:	mv	x10, _writeCharres_2_
+	jal	p.putchar
+# was:	jal	p.putchar, x10
+	mv	x10, x18
+# was:	mv	x10, _writeCharres_2_
+	addi	x2, x2, 8
+	lw	x18, -8(x2)
+	lw	x1, -4(x2)
+	jr	x1
 # Function main
 f.main:
 	sw	x1, -4(x2)
-	sw	x23, -28(x2)
 	sw	x22, -24(x2)
 	sw	x21, -20(x2)
 	sw	x20, -16(x2)
 	sw	x19, -12(x2)
 	sw	x18, -8(x2)
-	addi	x2, x2, -28
-	li	x11, 7
-# was:	li	_size_3_, 7
-	bge	x11, x0, l.safe_4_
-# was:	bge	_size_3_, x0, l.safe_4_
+	addi	x2, x2, -24
+	li	x11, 5
+# was:	li	_size_6_, 5
+	bge	x11, x0, l.safe_7_
+# was:	bge	_size_6_, x0, l.safe_7_
 	li	x10, 4
 # was:	li	x10, 4
 	la	x11, m.BadSize
 # was:	la	x11, m.BadSize
 	j	p.RuntimeError
-l.safe_4_:
-	li	x12, 0
-# was:	li	_a_exp_5_, 0
+l.safe_7_:
+	li	x12, 97
+# was:	li	_a_exp_8_, 97
 	mv	x10, x3
-# was:	mv	_let_fs_2_, x3
+# was:	mv	_let_fs_5_, x3
 	addi	x13, x11, 3
-# was:	addi	_tmp_10_, _size_3_, 3
+# was:	addi	_tmp_13_, _size_6_, 3
 	andi	x13, x13, -4
-# was:	andi	_tmp_10_, _tmp_10_, -4
+# was:	andi	_tmp_13_, _tmp_13_, -4
 	addi	x13, x13, 4
-# was:	addi	_tmp_10_, _tmp_10_, 4
+# was:	addi	_tmp_13_, _tmp_13_, 4
 	add	x3, x3, x13
-# was:	add	x3, x3, _tmp_10_
+# was:	add	x3, x3, _tmp_13_
 	sw	x11, 0(x10)
-# was:	sw	_size_3_, 0(_let_fs_2_)
-	addi	x14, x10, 4
-# was:	addi	_addr_6_, _let_fs_2_, 4
-	mv	x13, x0
-# was:	mv	_i_7_, x0
-l.loop_beg_8_:
-	bge	x13, x11, l.loop_end_9_
-# was:	bge	_i_7_, _size_3_, l.loop_end_9_
-	sb	x12, 0(x14)
-# was:	sb	_a_exp_5_, 0(_addr_6_)
-	addi	x14, x14, 1
-# was:	addi	_addr_6_, _addr_6_, 1
+# was:	sw	_size_6_, 0(_let_fs_5_)
+	addi	x13, x10, 4
+# was:	addi	_addr_9_, _let_fs_5_, 4
+	mv	x14, x0
+# was:	mv	_i_10_, x0
+l.loop_beg_11_:
+	bge	x14, x11, l.loop_end_12_
+# was:	bge	_i_10_, _size_6_, l.loop_end_12_
+	sb	x12, 0(x13)
+# was:	sb	_a_exp_8_, 0(_addr_9_)
 	addi	x13, x13, 1
-# was:	addi	_i_7_, _i_7_, 1
-	j	l.loop_beg_8_
-l.loop_end_9_:
-# 	mv	_arr_12_,_let_fs_2_
+# was:	addi	_addr_9_, _addr_9_, 1
+	addi	x14, x14, 1
+# was:	addi	_i_10_, _i_10_, 1
+	j	l.loop_beg_11_
+l.loop_end_12_:
+# 	mv	_arr_15_,_let_fs_5_
 	lw	x19, 0(x10)
-# was:	lw	_size_11_, 0(_arr_12_)
+# was:	lw	_size_14_, 0(_arr_15_)
 	mv	x18, x3
-# was:	mv	_mainres_1_, x3
+# was:	mv	_mainres_4_, x3
 	addi	x11, x19, 3
-# was:	addi	_tmp_22_, _size_11_, 3
+# was:	addi	_tmp_23_, _size_14_, 3
 	andi	x11, x11, -4
-# was:	andi	_tmp_22_, _tmp_22_, -4
+# was:	andi	_tmp_23_, _tmp_23_, -4
 	addi	x11, x11, 4
-# was:	addi	_tmp_22_, _tmp_22_, 4
+# was:	addi	_tmp_23_, _tmp_23_, 4
 	add	x3, x3, x11
-# was:	add	x3, x3, _tmp_22_
+# was:	add	x3, x3, _tmp_23_
 	sw	x19, 0(x18)
-# was:	sw	_size_11_, 0(_mainres_1_)
+# was:	sw	_size_14_, 0(_mainres_4_)
 	addi	x20, x18, 4
-# was:	addi	_addrg_15_, _mainres_1_, 4
+# was:	addi	_addrg_18_, _mainres_4_, 4
 	mv	x21, x0
-# was:	mv	_i_16_, x0
+# was:	mv	_i_19_, x0
 	addi	x22, x10, 4
-# was:	addi	_elem_13_, _arr_12_, 4
-l.loop_beg_17_:
-	bge	x21, x19, l.loop_end_18_
-# was:	bge	_i_16_, _size_11_, l.loop_end_18_
-	lbu	x23, 0(x22)
-# was:	lbu	_res_14_, 0(_elem_13_)
+# was:	addi	_elem_16_, _arr_15_, 4
+l.loop_beg_20_:
+	bge	x21, x19, l.loop_end_21_
+# was:	bge	_i_19_, _size_14_, l.loop_end_21_
+	lbu	x10, 0(x22)
+# was:	lbu	_res_17_, 0(_elem_16_)
 	addi	x22, x22, 1
-# was:	addi	_elem_13_, _elem_13_, 1
-# 	mv	_tmp_20_,_res_14_
-# 	mv	_fun_arg_res_19_,_tmp_20_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x23, x0, l.wBoolF_21_
-# was:	bne	_fun_arg_res_19_, x0, l.wBoolF_21_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_21_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-# 	mv	_res_14_,_fun_arg_res_19_
-	sb	x23, 0(x20)
-# was:	sb	_res_14_, 0(_addrg_15_)
+# was:	addi	_elem_16_, _elem_16_, 1
+# 	mv	x10,_res_17_
+	jal	f.writeChar
+# was:	jal	f.writeChar, x10
+# 	mv	_tmp_22_,x10
+# 	mv	_res_17_,_tmp_22_
+	sb	x10, 0(x20)
+# was:	sb	_res_17_, 0(_addrg_18_)
 	addi	x20, x20, 1
-# was:	addi	_addrg_15_, _addrg_15_, 1
+# was:	addi	_addrg_18_, _addrg_18_, 1
 	addi	x21, x21, 1
-# was:	addi	_i_16_, _i_16_, 1
-	j	l.loop_beg_17_
-l.loop_end_18_:
+# was:	addi	_i_19_, _i_19_, 1
+	j	l.loop_beg_20_
+l.loop_end_21_:
 	mv	x10, x18
-# was:	mv	x10, _mainres_1_
-	addi	x2, x2, 28
-	lw	x23, -28(x2)
+# was:	mv	x10, _mainres_4_
+	addi	x2, x2, 24
 	lw	x22, -24(x2)
 	lw	x21, -20(x2)
 	lw	x20, -16(x2)
