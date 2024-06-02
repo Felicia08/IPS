@@ -1,0 +1,12 @@
+fun bool write_bool(bool x) = write(x)
+
+fun [bool] write_bool_arr([bool] x) = map(write_bool, x)
+
+fun bool isTrue(bool a) =
+  if a == true then true
+  else false
+
+fun [bool] main() =
+    let arr = {true, false, true, false} in
+    let res = filter(isTrue, arr) in
+    write_bool_arr(res)

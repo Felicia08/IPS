@@ -1,0 +1,11 @@
+fun char write_char(char x) = write(x)
+
+fun [char] write_char_arr([char] x) = map(write_char, x)
+
+fun bool ischarB(char x) =
+    x == 'b'
+
+fun [char] main() =
+    let arr = {'a', 'b', 'c', 'd'} in
+    let res = filter(ischarB, arr) in
+    write_char_arr(res)
